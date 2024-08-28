@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Navbar,
@@ -23,6 +24,7 @@ import {
 } from "./Icons.jsx";
 import { AcmeLogo } from "./AcmeLogo.jsx";
 import { FiShoppingBag } from "react-icons/fi";
+import BagLogo from "@/public/BagLogo.jsx";
 
 export default function HomepageNavbar() {
   const icons = {
@@ -36,9 +38,6 @@ export default function HomepageNavbar() {
     server: <Server className="text-success" fill="currentColor" size={30} />,
     user: <TagUser className="text-danger" fill="currentColor" size={30} />,
   };
-
-  // Check if all icons are valid React elements
-  console.log("icons",icons);
 
   return (
     <Navbar isBordered classNames={{ wrapper: "max-w-full px-16" }}>
@@ -67,6 +66,7 @@ export default function HomepageNavbar() {
                 </Button>
               </DropdownTrigger>
             </NavbarItem>
+
             <DropdownMenu
               aria-label="ACME features"
               className="w-[340px]"
@@ -105,12 +105,15 @@ export default function HomepageNavbar() {
 
       <NavbarContent justify="end" className="gap-10">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#" className="flex flex-col text-[12px] text-slate-500 pt-4">
-            <FiShoppingBag size={20} fontWeight={100} color="black" />
+          <Link
+            href="#"
+            className="flex flex-col text-[12px] text-slate-500 pt-4"
+          >
+            <BagLogo size={24} fontWeight={0.7} color="black" />
             Bag
           </Link>
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
+        <NavbarItem className="flex-col pt-4 gap-2 text-[12px]">
           <Avatar
             isBordered
             as="button"
@@ -120,6 +123,7 @@ export default function HomepageNavbar() {
             size="sm"
             src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
           />
+          Profile
         </NavbarItem>
       </NavbarContent>
     </Navbar>
