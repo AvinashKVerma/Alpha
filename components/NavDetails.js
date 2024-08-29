@@ -8,14 +8,16 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
-export default function NavDetails({ heading, content }) {
+export default function NavDetails({ content }) {
   const pathName = usePathname();
 
   const key = Object.keys(content).find((ele) => pathName.includes(ele));
   return (
     <div className="flex justify-between w-full">
       <div className="leading-none flex flex-col gap-4">
-        <div className={`${poppins.className} text-[26px]`}>{heading}</div>
+        <div className={`${poppins.className} text-[26px]`}>
+          {content[key].heading}
+        </div>
         <div className="text-sm flex items-center gap-4">
           <span>{content[key].title}</span>
           <span className="flex gap-4">

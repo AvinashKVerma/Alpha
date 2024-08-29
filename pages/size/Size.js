@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { CustomCheckbox } from "@/components/CustomCheckbox";
+import { CustomCheckbox } from "@/pages/size/CustomCheckbox";
 import { CheckboxGroup } from "@nextui-org/react";
 import Image from "next/image";
 import { LuCheck } from "react-icons/lu";
