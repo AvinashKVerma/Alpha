@@ -23,7 +23,6 @@ import {
   Scale,
 } from "./Icons.jsx";
 import { AcmeLogo } from "./AcmeLogo.jsx";
-import { FiShoppingBag } from "react-icons/fi";
 import BagLogo from "@/public/BagLogo.jsx";
 
 export default function HomepageNavbar() {

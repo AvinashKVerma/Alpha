@@ -3,7 +3,6 @@ import "./globals.css";
 import { Providers } from "./providers";
 import HomepageNavbar from "@/components/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata = {
@@ -14,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={dmSans.className}>
+      <body className={`${dmSans.className} px-12`}>
         <Providers>
           <HomepageNavbar />
           {children}
