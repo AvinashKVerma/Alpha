@@ -24,6 +24,11 @@ export default function layout({ children }) {
       title:
         "Get a discount when ordering larger quantities and select even more designs for your pouches.",
     },
+    design: {
+      heading: "Material",
+      title:
+        "Get a discount when ordering larger quantities and select even more designs for your pouches.",
+    },
   };
   return (
     <div>
