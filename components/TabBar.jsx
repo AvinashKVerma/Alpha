@@ -1,9 +1,21 @@
 "use client";
 import React from "react";
-import { Tabs, Tab, Chip } from "@nextui-org/react";
+import { Tabs, Tab } from "@nextui-org/react";
+import { usePathname } from "next/navigation";
+import { IoCheckmark } from "react-icons/io5";
+import Link from "next/link";
 
-export default function TabBar() {
-  const tabList = ["Packing type", "Size", "Quantity", "Design", "Material"];
+export default function TabBar({ content }) {
+  const pathName = usePathname();
+
+  const tabList = Object.keys(content).map((ele) =>
+    ele.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
+  );
+
+  const keyIndex = Object.keys(content).findIndex((ele) =>
+    pathName.includes(ele)
+  );
+
   return (
     <div className="flex w-full items-center flex-col w-max-[709px]">
       <Tabs
@@ -17,22 +29,46 @@ export default function TabBar() {
           tabContent: "group-data-[selected=true]:text-[#2CB041]",
         }}
       >
-        {tabList.map((ele, i) => {
+        {tabList.map((item, i) => {
+          const isSelectedOrBefore = i <= keyIndex;
           return (
             <Tab
-              key={ele}
+              key={item}
               title={
-                <div className="flex gap-2 items-center">
-                  <span className="relative max-w-fit min-w-min box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full bg-transparent border-default text-foreground aspect-square flex justify-center items-center group-data-[selected=true]:border-[#2CB041] group-data-[selected=true]:text-[#2CB041]">
-                    {i + 1}
+                <Link
+                  href={`/products/${item
+                    .toLocaleLowerCase()
+                    .replace(/ /g, "-")}`}
+                  className="flex gap-2 items-center"
+                >
+                  <span
+                    className={`relative max-w-fit min-w-min box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full bg-transparent border-default aspect-square flex justify-center items-center ${
+                      isSelectedOrBefore
+                        ? "border-[#2CB041] text-[#2CB041]"
+                        : ""
+                    }`}
+                  >
+                    {isSelectedOrBefore ? <IoCheckmark /> : i + 1}
                   </span>
                   <span className="flex items-center">
-                    <span className="text-base font-medium">{ele}</span>
+                    <span
+                      className={`text-base font-medium ${
+                        isSelectedOrBefore ? "text-[#2CB041]" : ""
+                      }`}
+                    >
+                      {item}
+                    </span>
                     {i + 1 !== tabList.length && (
-                      <span className="border border-[#240812] border-dashed w-16 mx-auto"></span>
+                      <span
+                        className={`border ${
+                          isSelectedOrBefore
+                            ? "border-[#2CB041]"
+                            : "border-[#240812]"
+                        } border-dashed w-16 mx-auto`}
+                      ></span>
                     )}
                   </span>
-                </div>
+                </Link>
               }
             />
           );

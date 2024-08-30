@@ -39,7 +39,7 @@ export default function HomepageNavbar() {
   };
 
   return (
-    <Navbar isBordered classNames={{ wrapper: "max-w-full px-16" }}>
+    <Navbar classNames={{ wrapper: "max-w-full px-16" }}>
       <NavbarBrand className="mr-4">
         <AcmeLogo />
         <p className="hidden sm:block font-bold text-inherit">ACME</p>
@@ -73,12 +73,8 @@ export default function HomepageNavbar() {
                 base: "gap-4",
               }}
             >
-              <DropdownItem
-                key="autoscaling"
-                description="ACME scales apps to meet user demand, automagically, based on load."
-                startContent={icons.scale}
-              >
-                Autoscaling
+              <DropdownItem key="autoscaling" startContent={icons.scale}>
+                <Link href="/products/packaging-type">Packaging Type</Link>
               </DropdownItem>
               <DropdownItem
                 key="usage_metrics"

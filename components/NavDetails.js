@@ -12,6 +12,7 @@ export default function NavDetails({ content }) {
   const pathName = usePathname();
 
   const key = Object.keys(content).find((ele) => pathName.includes(ele));
+
   return (
     <div className="flex justify-between w-full">
       <div className="leading-none flex flex-col gap-4">

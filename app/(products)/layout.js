@@ -24,7 +24,7 @@ export default function layout({ children }) {
       title:
         "Get a discount when ordering larger quantities and select even more designs for your pouches.",
     },
-    design: {
+    material: {
       heading: "Material",
       title:
         "Get a discount when ordering larger quantities and select even more designs for your pouches.",
@@ -33,7 +33,7 @@ export default function layout({ children }) {
   return (
     <div>
       <div className="my-8">
-        <TabBar />
+        <TabBar content={content} />
       </div>
       <div>
         <div className="flex gap-3 mb-8">
