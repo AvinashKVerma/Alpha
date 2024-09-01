@@ -36,16 +36,14 @@ export default function TabBar({ content }) {
               key={item}
               title={
                 <Link
-                  href={`/products/${item
-                    .toLocaleLowerCase()
-                    .replace(/ /g, "-")}`}
+                  href={`${item.toLocaleLowerCase().replace(/ /g, "-")}`}
                   className="flex gap-2 items-center"
                 >
                   <span
-                    className={`relative max-w-fit min-w-min box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full bg-transparent border-default aspect-square flex justify-center items-center ${
+                    className={`relative max-w-fit min-w-min box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full bg-transparent aspect-square flex justify-center items-center ${
                       isSelectedOrBefore
                         ? "border-[#2CB041] text-[#2CB041]"
-                        : ""
+                        : "border-default"
                     }`}
                   >
                     {isSelectedOrBefore ? <IoCheckmark /> : i + 1}

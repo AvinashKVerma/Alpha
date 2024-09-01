@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { CheckboxGroup } from "@nextui-org/react";
+import { Button, CheckboxGroup, Link } from "@nextui-org/react";
 import Image from "next/image";
 import { LuCheck } from "react-icons/lu";
 import { CustomCheckbox } from "./CustomCheckbox";
@@ -100,6 +100,11 @@ export default function Quantity() {
             run.
           </span>
         </div>
+        <Link href="design" className="w-full">
+          <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
+            Confirm
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 "use client";
-import { Image } from "@nextui-org/react";
+import { Button, Image, Link } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import React from "react";
 import { LuCheck } from "react-icons/lu";
@@ -79,6 +79,11 @@ export default function Material() {
             run.
           </span>
         </div>
+        <Link href="/cart" className="w-full">
+          <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
+            Confirm
+          </Button>
+        </Link>
       </div>
     </div>
   );

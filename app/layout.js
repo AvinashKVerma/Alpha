@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${dmSans.className} px-12`}>
         <Providers>
-          <HomepageNavbar />
+          {/* <HomepageNavbar /> */}
           {children}
         </Providers>
       </body>

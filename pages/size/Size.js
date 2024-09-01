@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { CustomCheckbox } from "@/pages/size/CustomCheckbox";
-import { CheckboxGroup } from "@nextui-org/react";
+import { Button, CheckboxGroup, Link } from "@nextui-org/react";
 import Image from "next/image";
 import { LuCheck } from "react-icons/lu";
 
 export default function Size() {
   const [groupSelected, setGroupSelected] = useState([]);
+
   const sizeList = [
     {
       size: "XS",
@@ -39,6 +40,7 @@ export default function Size() {
       weight: "250 g",
     },
   ];
+
   return (
     <div className="flex gap-5">
       <div className="w-4/5 flex gap-4">
@@ -50,7 +52,7 @@ export default function Size() {
                 Width x Height x Depth
               </span>
             </div>
-            <div className=" text-xs font-normal">Filling volume (approx.)</div>
+            <div className="text-xs font-normal">Filling volume (approx.)</div>
           </div>
           <div className="flex flex-col w-full h-full rounded-b-xl gap-0">
             <CheckboxGroup
@@ -61,20 +63,18 @@ export default function Size() {
                 wrapper: "gap-0",
               }}
             >
-              {sizeList.map((ele, i) => {
-                return (
-                  <div
-                    key={i}
-                    className="h-1/5 overflow-hidden last:rounded-b-xl"
-                  >
-                    <CustomCheckbox
-                      value="junior"
-                      size={ele}
-                      statusColor="secondary"
-                    />
-                  </div>
-                );
-              })}
+              {sizeList.map((ele, i) => (
+                <div
+                  key={i}
+                  className="h-1/5 overflow-hidden last:rounded-b-xl"
+                >
+                  <CustomCheckbox
+                    value={ele.size}
+                    size={ele}
+                    statusColor="secondary"
+                  />
+                </div>
+              ))}
             </CheckboxGroup>
           </div>
         </div>
@@ -100,6 +100,11 @@ export default function Size() {
             run.
           </span>
         </div>
+        <Link href="quantity" className="w-full">
+          <Button className="w-full text-lg font-bold bg-[#253670] text-white h-14">
+            Confirm
+          </Button>
+        </Link>
       </div>
     </div>
   );

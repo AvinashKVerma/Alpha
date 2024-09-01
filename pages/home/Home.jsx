@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "@nextui-org/react";
+import { Image, Link } from "@nextui-org/react";
 
 export default function Home() {
   const products = [
@@ -30,13 +30,19 @@ export default function Home() {
       <div className="grid grid-cols-4 gap-8">
         {products.map((ele) => {
           return (
-            <div key={ele.name} className="flex flex-col gap-5">
+            <Link
+              href={`${ele.name
+                .toLocaleLowerCase()
+                .replace(" ", "-")}/packaging-type`}
+              key={ele.name}
+              className="flex flex-col gap-5"
+            >
               <Image src={ele.img} alt="ele" />
               <div>
                 <div className="font-medium">{ele.name}</div>
                 <div className="font-semibold text-[#2362A7]">{ele.price}</div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

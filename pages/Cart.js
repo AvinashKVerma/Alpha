@@ -1,5 +1,12 @@
 "use client";
-import { Button, Divider, Image, Select, SelectItem } from "@nextui-org/react";
+import {
+  Button,
+  Divider,
+  Image,
+  Link,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 import React, { useState } from "react";
 
 export default function Cart() {
@@ -108,9 +115,11 @@ export default function Cart() {
             </span>
           </div>
         </div>
-        <Button className="text-lg font-bold bg-[#253670] text-white h-14">
-          Confirm
-        </Button>
+        <Link className="w-full" href="/order">
+          <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
+            Confirm
+          </Button>
+        </Link>
       </div>
     </div>
   );

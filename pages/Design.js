@@ -3,7 +3,14 @@ import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { LuCheck } from "react-icons/lu";
 import { UploadLogo } from "@/components/UploadLogo";
-import { Image, Progress, Select, SelectItem } from "@nextui-org/react";
+import {
+  Button,
+  Image,
+  Link,
+  Progress,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 import { IoWarningOutline } from "react-icons/io5";
 
 export default function Design() {
@@ -97,89 +104,92 @@ export default function Design() {
           </div>
         </div>
 
-        {/* Render uploaded images */}
-        <div className="rounded-xl flex flex-col justify-between border border-[#F0F0F0]">
-          <div className="flex rounded-t-xl px-5 justify-between border-b p-3 border-[#F0F0F0] bg-[#F9F9F9]">
-            <span>Upload</span>
-            <span className="pr-10">Order Quantity</span>
-          </div>
-          {uploadedFiles.map((file) => (
-            <div
-              key={file.id}
-              className="p-3 flex items-center justify-between border-b last:border-none"
-            >
-              <div className="flex items-center flex-grow">
-                <Image
-                  src={file.preview}
-                  alt={file.name}
-                  className="w-11 h-11 rounded-md overflow-hidden"
-                />
-                <div className="ml-3 flex-grow flex justify-between">
-                  <div>
-                    <div className="flex items-center gap-4">
-                      <span className="font-medium">{file.name}</span>
-                      {file.size > 500000 && (
-                        <p className="text-sm text-destructive-foreground flex items-center gap-2 text-[#EB395A]">
-                          <IoWarningOutline color="#EB395A" />
-                          Please upload higher image quality
-                        </p>
+        {uploadedFiles.length ? (
+          <div className="rounded-xl flex flex-col justify-between border border-[#F0F0F0]">
+            <div className="flex rounded-t-xl px-5 justify-between border-b p-3 border-[#F0F0F0] bg-[#F9F9F9]">
+              <span>Upload</span>
+              <span className="pr-10">Order Quantity</span>
+            </div>
+            {uploadedFiles.map((file) => (
+              <div
+                key={file.id}
+                className="p-3 flex items-center justify-between border-b last:border-none"
+              >
+                <div className="flex items-center flex-grow">
+                  <Image
+                    src={file.preview}
+                    alt={file.name}
+                    className="w-11 h-11 rounded-md overflow-hidden"
+                  />
+                  <div className="ml-3 flex-grow flex justify-between">
+                    <div>
+                      <div className="flex items-center gap-4">
+                        <span className="font-medium">{file.name}</span>
+                        {file.size > 500000 && (
+                          <p className="text-sm text-destructive-foreground flex items-center gap-2 text-[#EB395A]">
+                            <IoWarningOutline color="#EB395A" />
+                            Please upload higher image quality
+                          </p>
+                        )}
+                      </div>
+
+                      {file.progress === 100 && (
+                        <span className="text-muted-foreground">
+                          {`${(file.size / 1024).toFixed(2)} KB`}
+                        </span>
+                      )}
+                      {file.progress < 100 && (
+                        <div className="w-full">
+                          <Progress
+                            aria-label="Uploading..."
+                            size="sm"
+                            value={file.progress}
+                            color="success"
+                            className="w-full"
+                            classNames={{
+                              base: "max-w-full h-[2px]",
+                            }}
+                          />
+                          <div className="w-full flex justify-between">
+                            <div>
+                              {(
+                                (file.size * file.progress) /
+                                100 /
+                                1024
+                              ).toFixed(2)}{" "}
+                              KB of {(file.size / 1024).toFixed(2)} KB
+                            </div>
+                            <div>{file.progress}%</div>
+                          </div>
+                        </div>
                       )}
                     </div>
-
-                    {file.progress === 100 && (
-                      <span className="text-muted-foreground">
-                        {`${(file.size / 1024).toFixed(2)} KB`}
-                      </span>
-                    )}
-                    {file.progress < 100 && (
-                      <div className="w-full">
-                        <Progress
-                          aria-label="Uploading..."
-                          size="sm"
-                          value={file.progress}
-                          color="success"
-                          className="w-full"
-                          classNames={{
-                            base: "max-w-full h-[2px]",
-                          }}
-                        />
-                        <div className="w-full flex justify-between">
-                          <div>
-                            {((file.size * file.progress) / 100 / 1024).toFixed(
-                              2
-                            )}{" "}
-                            KB of {(file.size / 1024).toFixed(2)} KB
-                          </div>
-                          <div>{file.progress}%</div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex w-40 flex-wrap md:flex-nowrap gap-4">
-                    <Select
-                      aria-label="Number of orders"
-                      className="max-w-xs h-10"
-                      classNames={{ trigger: "min-h-9 h-9" }}
-                      selectedKeys={[value]}
-                      onChange={handleSelectionChange}
-                    >
-                      {["500", "1000", "1500", "2000"].map((ele) => (
-                        <SelectItem key={ele}>{ele}</SelectItem>
-                      ))}
-                    </Select>
+                    <div className="flex w-40 flex-wrap md:flex-nowrap gap-4">
+                      <Select
+                        aria-label="Number of orders"
+                        className="max-w-xs h-10"
+                        classNames={{ trigger: "min-h-9 h-9" }}
+                        selectedKeys={[value]}
+                        onChange={handleSelectionChange}
+                      >
+                        {["500", "1000", "1500", "2000"].map((ele) => (
+                          <SelectItem key={ele}>{ele}</SelectItem>
+                        ))}
+                      </Select>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <button
-                className="text-destructive hover:text-destructive/80"
-                onClick={() => handleRemove(file.id)}
-              >
-                ✖
-              </button>
-            </div>
-          ))}
-        </div>
+                <button
+                  className="text-destructive hover:text-destructive/80"
+                  onClick={() => handleRemove(file.id)}
+                >
+                  ✖
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       <div className="w-1/5 flex flex-col gap-5">
@@ -211,6 +221,11 @@ export default function Design() {
             run.
           </span>
         </div>
+        <Link href="material" className="w-full">
+          <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
+            Confirm
+          </Button>
+        </Link>
       </div>
     </div>
   );
