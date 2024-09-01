@@ -24,10 +24,8 @@ import {
 } from "./Icons.jsx";
 import { AcmeLogo } from "./AcmeLogo.jsx";
 import BagLogo from "@/public/BagLogo.jsx";
-import { usePathname } from "next/navigation.js";
 
 export default function HomepageNavbar() {
-  const pathName = usePathname();
   const icons = {
     chevron: <ChevronDown fill="currentColor" size={16} />,
     scale: <Scale className="text-warning" fill="currentColor" size={30} />,
@@ -39,8 +37,6 @@ export default function HomepageNavbar() {
     server: <Server className="text-success" fill="currentColor" size={30} />,
     user: <TagUser className="text-danger" fill="currentColor" size={30} />,
   };
-
-  console.log(pathName);
 
   return (
     <Navbar classNames={{ wrapper: "max-w-full px-16" }}>
