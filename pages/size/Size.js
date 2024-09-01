@@ -1,7 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { CustomCheckbox } from "@/pages/size/CustomCheckbox";
-import { Button, CheckboxGroup, Link } from "@nextui-org/react";
+import {
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Chip,
+  cn,
+  Link,
+} from "@nextui-org/react";
 import Image from "next/image";
 import { LuCheck } from "react-icons/lu";
 
@@ -63,18 +69,44 @@ export default function Size() {
                 wrapper: "gap-0",
               }}
             >
-              {sizeList.map((ele, i) => (
-                <div
-                  key={i}
-                  className="h-1/5 overflow-hidden last:rounded-b-xl"
-                >
-                  <CustomCheckbox
+              {sizeList.map((ele, i) => {
+                return (
+                  <Checkbox
+                    key={i}
+                    aria-label={ele.size}
+                    classNames={{
+                      base: cn(
+                        "inline-flex h-[96px] border-b-2 max-w-full w-full bg-content1 m-0",
+                        "hover:bg-content2 items-center justify-start",
+                        "cursor-pointer gap-2 p-4 border-b-2"
+                      ),
+                      icon: "rounded-full",
+                      label: "w-full last:rounded-b-xl",
+                    }}
                     value={ele.size}
-                    size={ele}
-                    statusColor="secondary"
-                  />
-                </div>
-              ))}
+                  >
+                    <div className="w-full flex justify-between text-[#03172B] gap-2">
+                      <div className="flex justify-evenly items-center gap-4">
+                        <Chip
+                          size="lg"
+                          className="relative max-w-fit min-w-min box-border whitespace-nowrap px-2 h-12 rounded-full bg-default aspect-square w-12 flex justify-center text-xl font-semibold text-[#2F4693] items-center`"
+                        >
+                          <span className="p-4">{ele.size}</span>
+                        </Chip>
+                        <span>{ele.dimension}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <span className="text-base font-normal">
+                          {ele.weight}
+                        </span>
+                        <span className="text-base font-normal">
+                          {ele.product}
+                        </span>
+                      </div>
+                    </div>
+                  </Checkbox>
+                );
+              })}
             </CheckboxGroup>
           </div>
         </div>

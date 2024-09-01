@@ -78,7 +78,6 @@ export default function Design() {
     );
   };
 
-  console.log(value);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
