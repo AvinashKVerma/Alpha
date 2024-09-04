@@ -17,7 +17,7 @@ export default function Productnav() {
   const pathname = usePathname();
 
   return (
-    <Navbar classNames={{ wrapper: "max-w-full px-16" }}>
+    <Navbar classNames={{ wrapper: "max-w-full px-0" }}>
       <NavbarBrand className="mr-4">
         <Link href="/">
           <IoIosArrowRoundBack size={30} color="#405F70" />

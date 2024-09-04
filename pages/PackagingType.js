@@ -55,23 +55,35 @@ export default function ProductsDetails() {
     },
   ];
   return (
-    <div className={`grid grid-cols-4 gap-4 ${poppins.className}`}>
+    <div
+      className={`grid grid-cols-1 mobile:grid-cols-4 gap-4 ${poppins.className}`}
+    >
       {productList.map((item, index) => {
         return (
           <Link
             key={index}
+            className="max-h-[394px]"
             href={`/${item.name.toLocaleLowerCase().replace(" ", "-")}/size`}
           >
             <Card
               shadow="sm"
-              isPressable
-              onPress={() => console.log("item pressed")}
-              className="broder-[#E45971] p-4"
+              className="broder-[#E45971] p-4 max-h-[394px] overflow-y-scroll"
             >
-              <CardBody className="overflow-visible p-0 flex gap-5 justify-center items-center flex-col">
-                <div className="mt-2">{item.icon}</div>
-                <h1 className="text-xl font-semibold">{item.name}</h1>
-                <span className="text-center text-sm">{item.description}</span>
+              <CardBody className="p-0">
+                <div className="flex gap-5 items-start mobile:justify-center mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">
+                  <div className="mobile:pt-5 w-fit">{item.icon}</div>
+                  <div className="flex flex-col gap-5 max-mobile:gap-[6px]">
+                    <div className="mobile:text-xl text-base font-semibold text-center">
+                      {item.name}
+                    </div>
+                    <span className="mobile:text-center text-xs mobile:text-sm line-clamp-3">
+                      {item.description}
+                    </span>
+                    <span className="text-xs font-semibold line-clamp-3">
+                      See More
+                    </span>
+                  </div>
+                </div>
               </CardBody>
               <CardFooter className="text-small p-0 flex-col justify-between border rounded-lg mt-5">
                 <div className="flex justify-between w-full p-3">

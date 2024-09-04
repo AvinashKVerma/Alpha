@@ -39,7 +39,7 @@ export default function HomepageNavbar() {
   };
 
   return (
-    <Navbar classNames={{ wrapper: "max-w-full px-16" }}>
+    <Navbar classNames={{ wrapper: "max-w-full px-0" }}>
       <NavbarBrand className="mr-4">
         <AcmeLogo />
         <p className="hidden sm:block font-bold text-inherit">ACME</p>

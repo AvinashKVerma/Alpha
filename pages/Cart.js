@@ -22,8 +22,8 @@ export default function Cart() {
     }));
   };
   return (
-    <div className="flex gap-6 mt-10">
-      <div className="w-3/5 flex flex-col gap-4">
+    <div className="max-w-[320px] flex max-mobile:flex-col gap-6 mobile:mt-10">
+      <div className="w-full mobile:w-3/5 flex flex-col gap-4">
         <h1 className="font-bold text-xl">Your Cart</h1>
         <div className="flex gap-5 p-5 shadow rounded-lg">
           <Image
@@ -88,9 +88,9 @@ export default function Cart() {
           </div>
         </div>
       </div>
-      <div className="w-2/5 flex flex-col gap-4">
+      <div className="w-full mobile:w-2/5 flex flex-col gap-4">
         <h1 className="font-bold text-xl">Price details</h1>
-        <div className="flex gap-5 p-5 shadow rounded-lg">
+        <div className="flex max-mobile:flex-col gap-5 p-5 shadow rounded-lg">
           <div className="flex flex-col justify-between w-full gap-5">
             <span className="flex justify-between w-full">
               <span className="text-[#03172B96]">Total MRP</span>

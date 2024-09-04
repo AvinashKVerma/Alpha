@@ -6,7 +6,6 @@ import { IoCheckmark } from "react-icons/io5";
 import Link from "next/link";
 
 export default function TabBar({ content }) {
-  console.log("jgjg", content);
   const pathName = usePathname();
 
   const tabList = Object.keys(content).map((ele) =>
@@ -18,7 +17,7 @@ export default function TabBar({ content }) {
   );
 
   return (
-    <div className="flex w-full items-center flex-col w-max-[709px]">
+    <div className="flex w-full items-center flex-col max-mobile:max-w-[320px]">
       <Tabs
         aria-label="Options"
         color="default"
@@ -26,7 +25,7 @@ export default function TabBar({ content }) {
         classNames={{
           tabList: "w-full relative rounded-none gap-0 p-0 border-divider",
           cursor: "w-full bg-transparent",
-          tab: "max-w-fit px-0 h-12",
+          tab: "max-w-fit px-0 h-4 mobile:h-12",
           tabContent: "group-data-[selected=true]:text-[#2CB041]",
         }}
       >
@@ -38,10 +37,10 @@ export default function TabBar({ content }) {
               title={
                 <Link
                   href={`${item.toLocaleLowerCase().replace(/ /g, "-")}`}
-                  className="flex gap-2 items-center"
+                  className="flex gap-2 max-mobile:justify-between items-center"
                 >
                   <span
-                    className={`relative max-w-fit min-w-min box-border whitespace-nowrap border-medium px-1 h-7 text-small rounded-full bg-transparent aspect-square flex justify-center items-center ${
+                    className={`relative max-w-fit min-w-min box-border whitespace-nowrap border-medium px-1 max-mobile:h-3 mobile:h-7 max-mobile:text-[10px] font-medium text-small rounded-full bg-transparent aspect-square flex justify-center items-center ${
                       isSelectedOrBefore
                         ? "border-[#2CB041] text-[#2CB041]"
                         : "border-default"
@@ -51,7 +50,7 @@ export default function TabBar({ content }) {
                   </span>
                   <span className="flex items-center">
                     <span
-                      className={`text-base font-medium ${
+                      className={`mobile:text-base text-[10px] font-medium ${
                         isSelectedOrBefore ? "text-[#2CB041]" : ""
                       }`}
                     >
@@ -63,7 +62,7 @@ export default function TabBar({ content }) {
                           isSelectedOrBefore
                             ? "border-[#2CB041]"
                             : "border-[#240812]"
-                        } border-dashed w-16 mx-auto`}
+                        } border-dashed w-[14px] mobile:w-16 mx-auto`}
                       ></span>
                     )}
                   </span>

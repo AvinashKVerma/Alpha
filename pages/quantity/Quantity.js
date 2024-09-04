@@ -44,9 +44,9 @@ export default function Quantity() {
     },
   ];
   return (
-    <div className="flex gap-5">
-      <div className="w-4/5 flex gap-4">
-        <div className="w-1/2 h-[715px] border-2 rounded-xl">
+    <div className="flex max-mobile:max-w-screen-mobile gap-5">
+      <div className="mobile:w-4/5 flex max-mobile:flex-col gap-4 w-full">
+        <div className="mobile:w-1/2 h-[715px] border-2 rounded-xl">
           <div className="h-[43px] bg-[#F9F9F9] rounded-t-xl border-b-2 flex justify-around px-2 items-center text-[#808b98]">
             <span className="text-xs font-normal">Size</span>
             <span className="text-xs font-normal">Price</span>
@@ -101,11 +101,11 @@ export default function Quantity() {
             </CheckboxGroup>
           </div>
         </div>
-        <div className="w-1/2 h-[488px] border-2 flex justify-center items-center rounded-xl">
+        <div className="max-mobile:hidden w-1/2 h-[488px] border-2 flex justify-center items-center rounded-xl">
           <Image src={"/size.png"} alt="size" width={350} height={356} />
         </div>
       </div>
-      <div className="w-1/5 flex flex-col gap-5">
+      <div className="max-mobile:hidden w-1/5 flex flex-col gap-5">
         <div className="flex flex-col gap-3 p-4 h-[121px] text-sm border-2 rounded-xl">
           <div className="">Your packaging</div>
           <div className="flex items-center gap-2">

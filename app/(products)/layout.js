@@ -3,9 +3,11 @@ import Productnav from "@/components/ProductNav";
 
 export default function layout({ children }) {
   return (
-    <>
-      <Productnav />
+    <div className="max-mobile:px-5">
+      <div className="max-mobile:hidden">
+        <Productnav />
+      </div>
       {children}
-    </>
+    </div>
   );
 }

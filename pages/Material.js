@@ -24,8 +24,10 @@ export default function Material() {
     },
   ];
   return (
-    <div className={`${poppins.className} mt-10 flex gap-5`}>
-      <div className="grid grid-cols-3 w-4/5 gap-5 flex-col">
+    <div
+      className={`${poppins.className} mobile:mt-10 flex flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5`}
+    >
+      <div className="grid grid-cols-1 mobile:grid-cols-3 w-full mobile:w-4/5 gap-5 flex-col">
         {materialList.map((ele, i) => {
           return (
             <div className="flex gap-4" key={i}>
@@ -37,11 +39,11 @@ export default function Material() {
                 height={61}
               />
               <div className="flex flex-col gap-2">
-                <span className="text-lg font-semibold leading-none">
+                <span className="text-sm mobile:text-lg font-semibold leading-none">
                   {ele.name}
                 </span>
-                <span className="text-sm">{ele.type}</span>
-                <span className="text-base p-1 text-center w-fit rounded-full px-2 align-middle bg-[#2F46931A] font-semibold">
+                <span className="text-xs mobile:text-sm">{ele.type}</span>
+                <span className="text-xs mobile:text-base p-1 text-center w-fit rounded-full px-2 align-middle bg-[#2F46931A] font-semibold">
                   {ele.price}
                 </span>
               </div>
@@ -49,8 +51,16 @@ export default function Material() {
           );
         })}
       </div>
+      <div className="mobile:hidden flex justify-between w-full">
+        <div>Price</div>
+        <Link href="/cart">
+          <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
+            Confirm
+          </Button>
+        </Link>
+      </div>
 
-      <div className="w-1/5 flex flex-col gap-5">
+      <div className="max-mobile:hidden w-1/5 flex flex-col gap-5">
         <div className="flex flex-col gap-3 p-4 h-[158px] text-sm border-2 rounded-xl">
           <div>Your packaging</div>
           <div className="flex items-center gap-2">

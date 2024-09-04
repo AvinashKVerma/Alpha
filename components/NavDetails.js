@@ -14,18 +14,20 @@ export default function NavDetails({ content }) {
   const key = Object.keys(content).find((ele) => pathName.includes(ele));
 
   return (
-    <div className="flex justify-between w-full mx-4">
-      <div className="leading-none flex flex-col gap-4">
-        <div className={`${poppins.className} text-[26px]`}>
+    <div className="flex justify-between w-full mr-4">
+      <div className="leading-none flex flex-col max-mobile:gap-[6px] mobile:gap-4">
+        <div
+          className={`${poppins.className} text-sm max-mobile:font-medium mobile:text-[26px]`}
+        >
           {content[key].heading}
         </div>
-        <div className="text-sm flex items-center gap-4">
+        <div className="mobile:text-sm text-xs flex items-center justify-evenly gap-4">
           <span>{content[key].title}</span>
           <span className="flex gap-4">
             {content[key]?.value?.map((ele, i) => {
               return (
                 <span
-                  className="flex items-center text-sm font-semibold text-[#2F4693] gap-2"
+                  className="flex items-center mobile:text-sm text-xs font-semibold text-[#2F4693] gap-2"
                   key={i}
                 >
                   <GiCheckMark color="#2F4693" />
@@ -36,10 +38,10 @@ export default function NavDetails({ content }) {
           </span>
         </div>
       </div>
-      <div className="flex items-center gap-3 h-fit">
+      <div className="max-mobile:hidden flex items-center gap-3 h-fit">
         <span className="text-base font-normal">Total Price : </span>
         <span className="bg-[#fef2e9] font-semibold text-base text-[#F47A1F] px-2 py-1 rounded-full">
-         ₹ 0.473 - ₹ 0.930 
+          ₹ 0.473 - ₹ 0.930 
         </span>
       </div>
     </div>

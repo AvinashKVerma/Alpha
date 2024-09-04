@@ -2,6 +2,7 @@ import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import HomepageNavbar from "@/components/Navbar";
+import MobileNav from "@/components/MobileNav";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -13,10 +14,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${dmSans.className} px-12`}>
+      <body
+        className={`${dmSans.className} scrollbar-hide w-full flex justify-center mobile:px-16 h-screen`}
+      >
         <Providers>
-          {/* <HomepageNavbar /> */}
-         <div className="px-10">{children}</div> 
+          <div className="mobile:hidden max-w-screen-mobile">
+            <MobileNav />
+          </div>
+          <div className="max-w-[1344px] scrollbar-hide">{children}</div>
         </Providers>
       </body>
     </html>
