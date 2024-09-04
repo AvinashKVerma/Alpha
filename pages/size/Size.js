@@ -111,7 +111,7 @@ export default function Size() {
           </div>
         </div>
         <div className="w-1/2 h-[488px] border-2 flex justify-center items-center rounded-xl">
-          <Image src={"/size.png"} alt="size" width={386} height={386} />
+          <Image src={"/size.png"} alt="size" width={350} height={350} />
         </div>
       </div>
       <div className="w-1/5 flex flex-col gap-5">

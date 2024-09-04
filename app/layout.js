@@ -6,7 +6,7 @@ import HomepageNavbar from "@/components/Navbar";
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Alpha Ecommerce - Home",
+  title: "Packiq Ecommerce - Home",
   description: "A Ecommerce Website for Packaging",
 };
 
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={`${dmSans.className} px-12`}>
         <Providers>
           {/* <HomepageNavbar /> */}
-          {children}
+         <div className="px-10">{children}</div> 
         </Providers>
       </body>
     </html>

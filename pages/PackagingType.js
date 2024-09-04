@@ -23,7 +23,7 @@ export default function ProductsDetails() {
         "Our flat bottom pouches are particularly durable and resistant. Because of the integrated aroma valve,  these pouches are the best fit for coffee products.",
       name: "Flat Bottom Pouch",
       time: "4-7 weeks",
-      price: "0.930",
+      price: "₹ 0.930",
       quantity: 500,
     },
     {
@@ -32,7 +32,7 @@ export default function ProductsDetails() {
         "Our flat bottom pouches are particularly durable and resistant. Because of the integrated aroma valve,  these pouches are the best fit for coffee products.",
       name: "Stand-up Pouch | Doypack",
       time: "4-7 weeks",
-      price: "0.930",
+      price: "₹ 0.930",
       quantity: "500",
     },
     {
@@ -41,7 +41,7 @@ export default function ProductsDetails() {
         "Our flat bottom pouches are particularly durable and resistant. Because of the integrated aroma valve,  these pouches are the best fit for coffee products.",
       name: "Three Side Seal Pouch",
       time: "4-7 weeks",
-      price: "0.930",
+      price: "₹ 0.930",
       quantity: 500,
     },
     {
@@ -50,7 +50,7 @@ export default function ProductsDetails() {
         "Our flat bottom pouches are particularly durable and resistant. Because of the integrated aroma valve,  these pouches are the best fit for coffee products.",
       name: "Center Seal",
       time: "4-7 weeks",
-      price: "0.930",
+      price: "₹ 0.930",
       quantity: 500,
     },
   ];

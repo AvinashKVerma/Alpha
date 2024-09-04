@@ -14,13 +14,13 @@ export default function Material() {
       img: "/Material.png",
       name: "Matte Look",
       type: "Smooth, non-reflective, sleek finish",
-      price: "$ 0.473 - $ 0.930",
+      price: "₹ 0.473 - ₹ 0.930",
     },
     {
       img: "/Material.png",
       name: "Glossy Look",
       type: "Shiny, reflective finish",
-      price: "$ 0.473 - $ 0.930",
+      price: "₹ 0.473 - $ 0.930",
     },
   ];
   return (

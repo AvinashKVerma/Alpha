@@ -14,7 +14,7 @@ export default function NavDetails({ content }) {
   const key = Object.keys(content).find((ele) => pathName.includes(ele));
 
   return (
-    <div className="flex justify-between w-full">
+    <div className="flex justify-between w-full mx-4">
       <div className="leading-none flex flex-col gap-4">
         <div className={`${poppins.className} text-[26px]`}>
           {content[key].heading}
@@ -39,7 +39,7 @@ export default function NavDetails({ content }) {
       <div className="flex items-center gap-3 h-fit">
         <span className="text-base font-normal">Total Price : </span>
         <span className="bg-[#fef2e9] font-semibold text-base text-[#F47A1F] px-2 py-1 rounded-full">
-          $ 0.473 - $ 0.930 
+         ₹ 0.473 - ₹ 0.930 
         </span>
       </div>
     </div>

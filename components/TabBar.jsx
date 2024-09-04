@@ -6,6 +6,7 @@ import { IoCheckmark } from "react-icons/io5";
 import Link from "next/link";
 
 export default function TabBar({ content }) {
+  console.log("jgjg", content);
   const pathName = usePathname();
 
   const tabList = Object.keys(content).map((ele) =>

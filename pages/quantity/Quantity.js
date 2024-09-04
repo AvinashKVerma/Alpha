@@ -9,37 +9,37 @@ export default function Quantity() {
   const sizeList = [
     {
       size: "1000",
-      price: "$5000",
+      price: "₹ 5000",
       number: "1",
     },
     {
       size: "2000",
-      price: "$5000",
+      price: "₹ 5000",
       number: "4",
     },
     {
       size: "3000",
-      price: "$5000",
+      price: "₹ 5000",
       number: "6",
     },
     {
       size: "5000",
-      price: "$5000",
+      price: "₹ 5000",
       number: "10",
     },
     {
       size: "10000",
-      price: "$5000",
+      price: "₹ 5000",
       number: "20",
     },
     {
       size: "15000",
-      price: "$5000",
+      price: "₹ 5000",
       number: "30",
     },
     {
       size: "20000",
-      price: "$5000",
+      price: "₹ 5000",
       number: "40",
     },
   ];
@@ -102,7 +102,7 @@ export default function Quantity() {
           </div>
         </div>
         <div className="w-1/2 h-[488px] border-2 flex justify-center items-center rounded-xl">
-          <Image src={"/size.png"} alt="size" width={386} height={386} />
+          <Image src={"/size.png"} alt="size" width={350} height={356} />
         </div>
       </div>
       <div className="w-1/5 flex flex-col gap-5">
@@ -129,7 +129,7 @@ export default function Quantity() {
             run.
           </span>
         </div>
-        <Link href="design" className="w-full">
+        <Link href="material" className="w-full">
           <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
             Confirm
           </Button>

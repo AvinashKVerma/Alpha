@@ -22,11 +22,6 @@ export default function Layout({ children }) {
       title:
         "Get a discount when ordering larger quantities and select even more designs for your pouches.",
     },
-    design: {
-      heading: "Design",
-      title:
-        "Get a discount when ordering larger quantities and select even more designs for your pouches.",
-    },
     material: {
       heading: "Material",
       title:
@@ -72,7 +67,7 @@ export default function Layout({ children }) {
           </Link>
           <NavDetails content={content} />
         </div>
-        {children}
+       <div className="px-4"> {children}</div>
       </div>
     </div>
   );

@@ -81,8 +81,8 @@ export default function Cart() {
           </div>
           <div className="flex flex-col justify-between">
             <div className="flex flex-col gap-2">
-              <span className="text-lg font-medium">$ 30.36</span>
-              <span className="flex gap-3 text-[#9FA9B3]">$ 30.36</span>
+              <span className="text-lg font-medium">₹ 30.36</span>
+              <span className="flex gap-3 text-[#9FA9B3]">₹ 30.36</span>
             </div>
             <div className="flex gap-4">Delete</div>
           </div>
@@ -94,24 +94,24 @@ export default function Cart() {
           <div className="flex flex-col justify-between w-full gap-5">
             <span className="flex justify-between w-full">
               <span className="text-[#03172B96]">Total MRP</span>
-              <span>$ 1098</span>
+              <span>₹ 1098</span>
             </span>
             <span className="flex justify-between w-full">
               <span className="text-[#03172B96]">Price per item</span>
-              <span>$ 23.36</span>
+              <span>₹ 23.36</span>
             </span>
             <span className="flex justify-between w-full">
               <span className="text-[#03172B96]">Discount on MRP</span>
-              <span>- $ 549</span>
+              <span>- ₹ 549</span>
             </span>
             <span className="flex justify-between w-full">
               <span className="text-[#03172B96]">Delivery fee</span>
-              <span>$ 50</span>
+              <span>₹ 50</span>
             </span>
             <Divider />
             <span className="flex justify-between font-bold">
               <span>Total</span>
-              <span>$ 1023</span>
+              <span>₹ 1023</span>
             </span>
           </div>
         </div>
