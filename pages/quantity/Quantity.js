@@ -44,7 +44,7 @@ export default function Quantity() {
     },
   ];
   return (
-    <div className="flex max-mobile:max-w-screen-mobile gap-5">
+    <div className="flex max-mobile:max-w-screen-mobile mb-[72px] gap-5">
       <div className="mobile:w-4/5 flex max-mobile:flex-col gap-4 w-full">
         <div className="mobile:w-1/2 h-[715px] border-2 rounded-xl">
           <div className="h-[43px] bg-[#F9F9F9] rounded-t-xl border-b-2 flex justify-around px-2 items-center text-[#808b98]">

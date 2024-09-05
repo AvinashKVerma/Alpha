@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center max-w-[1,291px] max-mobile:px-[30px] mobile:gap-[60px] gap-4 mb-4">
-      <div className="flex flex-col w-full mobile:justify-start">
+      <div className="flex flex-col w-full mobile:items-center mobile:justify-start">
         <div className="text-[10px] text-[#081F3866] mobile:hidden">
           All Products
         </div>
@@ -50,7 +50,7 @@ export default function Home() {
                 <div className="font-medium max-mobile:text-sm max-mobile:font-medium">
                   {ele.name}
                 </div>
-                <div className="font-semibold px-1 flex items-center justify-center bg-gray-200 text-xs mobile:text-base text-[#143761] mobile:w-[140px] h-[22px] rounded-lg gap-0 ">
+                <div className="font-semibold flex items-center justify-center bg-gray-200 text-xs mobile:text-base text-[#143761] mobile:w-[140px] px-[10px] py-[5px] rounded-lg gap-0 ">
                   {ele.price}
                 </div>
               </div>

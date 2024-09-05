@@ -48,7 +48,7 @@ export default function Size() {
   ];
 
   return (
-    <div className="flex max-mobile:max-w-screen-mobile gap-5">
+    <div className="flex max-mobile:max-w-screen-mobile mb-[100px] gap-5">
       <div className="mobile:w-4/5 flex max-mobile:flex-col  gap-4">
         <div className="mobile:hidden mobile:w-auto h-[161px] border-2 flex justify-center items-center rounded-xl overflow-hidden">
           <Image

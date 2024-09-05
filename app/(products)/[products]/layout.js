@@ -3,7 +3,7 @@ import React from "react";
 import TabBar from "@/components/TabBar";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import NavDetails from "@/components/NavDetails";
-import { Link } from "@nextui-org/react";
+import { Button, Link } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 
 export default function Layout({ children }) {
@@ -56,18 +56,28 @@ export default function Layout({ children }) {
     previousIndex === 0 ? "/" : `/${pageOrder[previousIndex]}`;
 
   return (
-    <div className="flex flex-col mobile:gap-8 gap-[6px]">
+    <div className="flex flex-col gap-5 mobile:gap-8 h-full">
       <div className="mobile:mt-8">
         <TabBar content={content} />
       </div>
-      <div className="flex flex-col max-mobile:gap-5">
-        <div className=" flex items-start">
+      <div className="flex flex-col gap-[35px] max-mobile:gap-5 flex-grow">
+        <div className="flex mobile:gap-3 items-start">
           <Link className="max-mobile:hidden" href={previousPage}>
             <IoArrowBackCircleOutline size={24} color="#081F38" />
           </Link>
           <NavDetails content={content} />
         </div>
-        <div className="mb-16">{children}</div>
+        <div className="flex flex-col flex-grow justify-between">
+          {children}
+          <div className="mobile:hidden fixed bg-white left-0 bottom-0 flex items-center justify-between w-full px-[30px] py-[14px]">
+            <div>Price</div>
+            <Link href="/cart">
+              <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
+                Confirm
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

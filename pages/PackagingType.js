@@ -56,7 +56,7 @@ export default function ProductsDetails() {
   ];
   return (
     <div
-      className={`grid grid-cols-1 mobile:grid-cols-4 gap-4 ${poppins.className}`}
+      className={`grid grid-cols-1 scrollbar-hide mobile:grid-cols-4 mb-[72px] gap-4 ${poppins.className}`}
     >
       {productList.map((item, index) => {
         return (
@@ -67,7 +67,7 @@ export default function ProductsDetails() {
           >
             <Card
               shadow="sm"
-              className="broder-[#E45971] p-4 max-h-[394px] overflow-y-scroll"
+              className="broder-[#E45971] p-4 max-h-[394px] scrollbar-hide overflow-y-scroll"
             >
               <CardBody className="p-0">
                 <div className="flex gap-5 items-start mobile:justify-center mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">

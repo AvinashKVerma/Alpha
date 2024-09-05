@@ -25,7 +25,7 @@ export default function Material() {
   ];
   return (
     <div
-      className={`${poppins.className} mobile:mt-10 flex flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5`}
+      className={`${poppins.className} mobile:mt-10 flex flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
     >
       <div className="grid grid-cols-1 mobile:grid-cols-3 w-full mobile:w-4/5 gap-5 flex-col">
         {materialList.map((ele, i) => {
@@ -51,15 +51,6 @@ export default function Material() {
           );
         })}
       </div>
-      <div className="mobile:hidden flex justify-between w-full">
-        <div>Price</div>
-        <Link href="/cart">
-          <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
-            Confirm
-          </Button>
-        </Link>
-      </div>
-
       <div className="max-mobile:hidden w-1/5 flex flex-col gap-5">
         <div className="flex flex-col gap-3 p-4 h-[158px] text-sm border-2 rounded-xl">
           <div>Your packaging</div>
