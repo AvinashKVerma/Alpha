@@ -17,16 +17,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${dmSans.className} scrollbar-hide w-full flex justify-center mobile:px-16 h-screen`}
       >
-        <Providers>
-          <div className="flex flex-col h-screen scrollbar-hide">
-            <div className="mobile:hidden max-w-screen-mobile">
-              <MobileNav />
-            </div>
-            <div className="max-w-[1344px] scrollbar-hide flex-grow">
-              {children}
-            </div>
+        <div className="flex flex-col h-screen scrollbar-hide mobile:min-w-full">
+          <div className="mobile:hidden max-w-screen-mobile">
+            <MobileNav />
           </div>
-        </Providers>
+          <div className="max-w-[1344px] scrollbar-hide flex-grow mobile:w-full">
+            <Providers className="w-full">{children} </Providers>
+          </div>
+        </div>
       </body>
     </html>
   );

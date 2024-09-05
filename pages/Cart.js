@@ -44,7 +44,7 @@ export default function Cart() {
 
   return (
     <>
-      <div className="max-w-[320px] mb-[66px] flex max-mobile:flex-col gap-6 mobile:mt-10">
+      <div className="max-mobile:max-w-[320px] mb-[66px] flex max-mobile:flex-col gap-6 mobile:mt-10">
         <div className="w-full mobile:w-3/5 flex flex-col gap-4">
           <h1 className="font-bold text-xl">Your Cart</h1>
           <div className="flex gap-5 p-3 mobile:p-5 shadow rounded-lg">
