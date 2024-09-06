@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
             <MobileNav />
           </div>
           <div className="max-w-[1344px] scrollbar-hide flex-grow mobile:w-full">
-            <Providers className="w-full">{children} </Providers>
+            <Providers className="w-full">{children}</Providers>
           </div>
         </div>
       </body>
