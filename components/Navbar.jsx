@@ -12,6 +12,7 @@ import {
   Dropdown,
   DropdownMenu,
   Avatar,
+  Image,
 } from "@nextui-org/react";
 import {
   ChevronDown,
@@ -40,9 +41,8 @@ export default function HomepageNavbar() {
 
   return (
     <Navbar classNames={{ wrapper: "max-w-full px-0" }}>
-      <NavbarBrand className="mr-4">
-        <AcmeLogo />
-        <p className="hidden sm:block font-bold text-inherit">ACME</p>
+      <NavbarBrand className="mr-4 w-[87.5px]">
+        <Image src="/productNavLogo.png" alt="Logo" height={52} width={87.5} />
       </NavbarBrand>
       <NavbarContent justify="start">
         <NavbarContent className="hidden sm:flex gap-10" justify="center">
@@ -56,7 +56,7 @@ export default function HomepageNavbar() {
               <DropdownTrigger>
                 <Button
                   disableRipple
-                  className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                  className="p-0 text-medium bg-transparent data-[hover=true]:bg-transparent"
                   endContent={icons.chevron}
                   radius="sm"
                   variant="light"
@@ -85,11 +85,41 @@ export default function HomepageNavbar() {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Shop By
-            </Link>
-          </NavbarItem>
+          <Dropdown>
+            <NavbarItem>
+              <DropdownTrigger>
+                <Button
+                  disableRipple
+                  className="p-0 text-medium bg-transparent data-[hover=true]:bg-transparent"
+                  endContent={icons.chevron}
+                  radius="sm"
+                  variant="light"
+                >
+                  Shop By
+                </Button>
+              </DropdownTrigger>
+            </NavbarItem>
+
+            <DropdownMenu
+              aria-label="ACME features"
+              className="w-[340px]"
+              itemClasses={{
+                base: "gap-4",
+              }}
+            >
+              <DropdownItem key="autoscaling" startContent={icons.scale}>
+                <Link href="/products/packaging-type">Packaging Type</Link>
+              </DropdownItem>
+              <DropdownItem
+                key="usage_metrics"
+                description="Real-time metrics to debug issues. Slow query added? We’ll show you exactly where."
+                startContent={icons.activity}
+              >
+                Usage Metrics
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+
           <NavbarItem>
             <Link color="foreground" href="#">
               Contact Us

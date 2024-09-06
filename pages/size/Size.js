@@ -62,7 +62,7 @@ export default function Size() {
             style={{ width: "auto", height: "100%" }} // Optional inline styles if needed
           />
         </div>
-        <div className="mobile:w-1/2 h-[488px] border-2 rounded-xl">
+        <div className="mobile:w-1/2 border-2 rounded-xl">
           <div className="h-12 bg-[#F9F9F9] rounded-t-xl border-b-2 flex justify-between px-2 items-center text-[#808b98]">
             <div className="font-normal flex justify-evenly">
               <span className="text-xs font-normal">Size</span>
@@ -81,7 +81,7 @@ export default function Size() {
               }}
               classNames={{
                 base: "w-full w-max-full",
-                wrapper: "gap-0",
+                wrapper: "gap-0 rounded-b-xl border-b-2",
               }}
             >
               {sizeList.map((ele, i) => {
@@ -91,9 +91,9 @@ export default function Size() {
                     aria-label={ele.size}
                     classNames={{
                       base: cn(
-                        "inline-flex h-[96px] border-b-2 max-w-full w-full bg-content1 m-0",
+                        "inline-flex h-[80px] max-w-full w-full bg-content1 m-0",
                         "hover:bg-content2 items-center justify-start",
-                        "cursor-pointer gap-2 p-4 border-b-2"
+                        "cursor-pointer gap-2 p-2 border-b-2"
                       ),
                       icon: "rounded-full",
                       label: "w-full last:rounded-b-xl",

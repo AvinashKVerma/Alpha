@@ -16,16 +16,19 @@ export default function Layout({ children }) {
     size: {
       heading: "Size",
       title: "Get a discount by choosing bigger sizes and save more",
+      title2: "Get a discount by choosing bigger sizes and save more",
     },
     quantity: {
       heading: "Quantity",
       title:
         "Get a discount when ordering larger quantities and select even more designs for your pouches.",
+      title2: "Get a discount by choosing bigger sizes and save more",
     },
     material: {
       heading: "Material",
       title:
         "Get a discount when ordering larger quantities and select even more designs for your pouches.",
+      title2: "Get a discount by choosing bigger sizes and save more",
     },
   };
 

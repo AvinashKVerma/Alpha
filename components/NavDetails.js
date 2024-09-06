@@ -22,7 +22,10 @@ export default function NavDetails({ content }) {
           {content[key].heading}
         </div>
         <div className="mobile:text-sm text-xs flex items-center justify-evenly gap-4">
-          <span>{content[key].title}</span>
+          <div>
+            <span className="max-md:hidden">{content[key].title}</span>
+            <span className="md:hidden">{content[key].title2}</span>
+          </div>
           <span className="flex gap-4">
             {content[key]?.value?.map((ele, i) => {
               return (
