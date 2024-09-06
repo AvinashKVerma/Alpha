@@ -93,7 +93,7 @@ export default function Quantity() {
                       </div>
                       <div className="flex flex-col">
                         <span className="text-lg font-medium">{ele.price}</span>
-                        <span className="text-lg text-[#03172B80] font-medium">{`($50/piece)`}</span>
+                        <span className="text-lg text-[#03172B80] font-medium">{`(₹50/piece)`}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         {ele.number}

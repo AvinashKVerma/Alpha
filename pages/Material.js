@@ -1,14 +1,17 @@
 "use client";
 import { Button, Image, Link } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
-import React from "react";
+import React, { useState } from "react";
 import { LuCheck } from "react-icons/lu";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
+
 export default function Material() {
+  const [selectedMaterial, setSelectedMaterial] = useState(null); // State to track selected material
+
   const materialList = [
     {
       img: "/Material.png",
@@ -20,9 +23,14 @@ export default function Material() {
       img: "/Material.png",
       name: "Glossy Look",
       type: "Shiny, reflective finish",
-      price: "₹ 0.473 - $ 0.930",
+      price: "₹ 0.473 - ₹ 0.930",
     },
   ];
+
+  const handleSelect = (index) => {
+    setSelectedMaterial(index); // Update the selected material
+  };
+
   return (
     <div
       className={`${poppins.className} flex max-mobile:flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
@@ -30,24 +38,40 @@ export default function Material() {
       <div className="grid grid-cols-1 mobile:grid-cols-3 w-full mobile:w-4/5 gap-5 flex-col">
         {materialList.map((ele, i) => {
           return (
-            <div className="flex gap-4" key={i}>
-              <Image
-                src={ele.img}
-                alt={ele.name}
-                objectfit="cover"
-                width={61}
-                height={61}
-              />
-              <div className="flex flex-col gap-2">
-                <span className="text-sm mobile:text-lg font-semibold leading-none">
-                  {ele.name}
-                </span>
-                <span className="text-xs mobile:text-sm">{ele.type}</span>
-                <span className="text-xs mobile:text-base p-1 text-center w-fit rounded-full px-2 align-middle bg-[#2F46931A] font-semibold">
-                  {ele.price}
-                </span>
+            <Link
+              className={`text-black h-fit p-3 cursor-pointer transition-all duration-300 ${
+                selectedMaterial === i
+                  ? "bg-[#ebeeef] shadow-lg border-2"
+                  : "bg-white"
+              }`}
+              href="/cart"
+              key={i}
+            >
+              <div
+                className="flex gap-4"
+                onClick={() => handleSelect(i)} // On click, select this material
+              >
+                <Image
+                  src={ele.img}
+                  alt={ele.name}
+                  objectfit="cover"
+                  width={61}
+                  height={61}
+                />
+                <div className="flex flex-col gap-2">
+                  <span className="text-sm mobile:text-lg font-semibold leading-none">
+                    {ele.name}
+                  </span>
+                  <span className="text-xs mobile:text-sm">{ele.type}</span>
+                  <span className="text-xs mobile:text-base p-1 text-center w-fit rounded-full px-2 align-middle bg-[#2F46931A] font-semibold">
+                    {ele.price}
+                  </span>
+                  <span className="text-xs mobile:text-base p-1 align-middle">
+                    View detail
+                  </span>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
