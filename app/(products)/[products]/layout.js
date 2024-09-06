@@ -37,7 +37,7 @@ export default function Layout({ children }) {
     "packaging-type",
     "size",
     "quantity",
-    "design",
+    // "design",
     "material",
   ];
 
@@ -55,6 +55,7 @@ export default function Layout({ children }) {
   const previousPage =
     previousIndex === 0 ? "/" : `/${pageOrder[previousIndex]}`;
 
+  console.log(pathName, pageOrder[currentIndex + 1]);
   return (
     <div className="flex flex-col gap-5 mobile:gap-8 h-full">
       <div className="mobile:mt-8">
@@ -71,7 +72,13 @@ export default function Layout({ children }) {
           {children}
           <div className="mobile:hidden fixed bg-white left-0 bottom-0 flex items-center justify-between w-full px-[30px] py-[14px]">
             <div>Price</div>
-            <Link href="/cart">
+            <Link
+              href={
+                pageOrder[currentIndex + 1]
+                  ? `${pageOrder[currentIndex + 1]}`
+                  : "/cart"
+              }
+            >
               <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
                 Confirm
               </Button>

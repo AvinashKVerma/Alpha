@@ -183,7 +183,7 @@ export default function Cart() {
       </div>
       <div className="mobile:hidden fixed bg-white left-0 bottom-0 flex items-center justify-between w-full px-[30px] py-[14px]">
         <div>Price</div>
-        <Link href="/cart">
+        <Link href="/order">
           <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
             Confirm
           </Button>
