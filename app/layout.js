@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${dmSans.className} scrollbar-hide w-full flex justify-center mobile:px-16 h-screen`}
       >
-        <div className="flex flex-col h-screen scrollbar-hide mobile:min-w-full">
+        <div className="flex flex-col h-screen scrollbar-hide mobile:min-w-full items-center">
           <div className="mobile:hidden max-w-screen-mobile">
             <MobileNav />
           </div>

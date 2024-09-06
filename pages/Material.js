@@ -25,7 +25,7 @@ export default function Material() {
   ];
   return (
     <div
-      className={`${poppins.className} mobile:mt-10 flex max-mobile:flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
+      className={`${poppins.className} flex max-mobile:flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
     >
       <div className="grid grid-cols-1 mobile:grid-cols-3 w-full mobile:w-4/5 gap-5 flex-col">
         {materialList.map((ele, i) => {
