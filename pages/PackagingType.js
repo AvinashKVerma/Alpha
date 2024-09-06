@@ -73,7 +73,7 @@ export default function ProductsDetails() {
                 <div className="flex gap-5 items-start mobile:justify-center mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">
                   <div className="mobile:pt-5 w-fit">{item.icon}</div>
                   <div className="flex flex-col gap-5 max-mobile:gap-[6px]">
-                    <div className="mobile:text-xl text-base font-semibold text-center">
+                    <div className="mobile:text-xl text-base font-semibold mobile:text-center">
                       {item.name}
                     </div>
                     <span className="mobile:text-center text-xs mobile:text-sm line-clamp-3">
