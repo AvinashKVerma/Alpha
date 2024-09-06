@@ -108,15 +108,22 @@ export default function Size() {
                         >
                           <span className="p-4">{ele.size}</span>
                         </Chip>
-                        <span>{ele.dimension}</span>
+                        <span className="max-mobile:hidden">
+                          {ele.dimension}
+                        </span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <span className="text-base font-normal">
-                          {ele.weight}
+                      <div className="flex flex-col max-mobile:items-end">
+                        <span className="mobile:hidden max-mobile: text-sm">
+                          {ele.dimension}
                         </span>
-                        <span className="text-base font-normal">
-                          {ele.product}
-                        </span>
+                        <div className="flex items-center gap-1">
+                          <span className="mobile:text-base text-xs text-[#03172B80] font-normal">
+                            {ele.weight}
+                          </span>
+                          <span className="mobile:text-base text-xs text-[#03172B80] font-normal">
+                            {`(${ele.product})`}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </Checkbox>

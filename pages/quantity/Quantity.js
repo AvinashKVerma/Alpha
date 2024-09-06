@@ -110,11 +110,13 @@ export default function Quantity() {
         </div>
       </div>
       <div className="max-mobile:hidden w-1/5 flex flex-col gap-5">
-        <div className="flex flex-col gap-3 p-4 h-[121px] text-sm border-2 rounded-xl">
+        <div className="flex flex-col gap-3 p-4 text-sm border-2 rounded-xl">
           <div className="">Your packaging</div>
           <div className="flex items-center gap-2">
-            <LuCheck />
-            <span> Type :</span>
+            <div className="flex items-center gap-2">
+              <LuCheck />
+              <span> Type :</span>
+            </div>
             <span className="font-semibold"> Flat bottom pouch</span>
           </div>
           <div className="flex items-center gap-2">
