@@ -50,7 +50,7 @@ export default function Home() {
                 <div className="font-medium max-mobile:text-sm max-mobile:font-medium">
                   {ele.name}
                 </div>
-                <div className="font-semibold flex items-center justify-center bg-gray-200 text-xs mobile:text-base text-[#143761] mobile:w-[140px] px-[10px] py-[5px] rounded-lg gap-0 ">
+                <div className="font-semibold flex items-center justify-center bg-gray-200 text-xs mobile:text-base text-[#143761] mobile:w-[170px] px-[10px] py-[5px] rounded-lg gap-0 ">
                   {ele.price}
                 </div>
               </div>
