@@ -47,6 +47,8 @@ export default function Size() {
     },
   ];
 
+  console.log(groupSelected);
+
   return (
     <div className="flex max-mobile:max-w-screen-mobile mb-[100px] gap-5">
       <div className="mobile:w-4/5 flex max-mobile:flex-col  gap-4">
@@ -73,7 +75,10 @@ export default function Size() {
           <div className="flex flex-col w-full h-full rounded-b-xl gap-0">
             <CheckboxGroup
               value={groupSelected}
-              onChange={setGroupSelected}
+              onChange={(e) => {
+                const lastSelected = e[e.length - 1];
+                setGroupSelected([lastSelected]);
+              }}
               classNames={{
                 base: "w-full w-max-full",
                 wrapper: "gap-0",

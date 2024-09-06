@@ -55,7 +55,11 @@ export default function Quantity() {
           <div className="flex flex-col w-full h-full rounded-b-xl gap-0">
             <CheckboxGroup
               value={groupSelected}
-              onChange={setGroupSelected}
+              onChange={(e) => {
+                // Store only the last selected checkbox
+                const lastSelected = e[e.length - 1];
+                setGroupSelected([lastSelected]); // Update state with the last selected value
+              }}
               classNames={{
                 base: "w-full w-max-full",
                 wrapper: "gap-0",
