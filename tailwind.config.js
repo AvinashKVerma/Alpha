@@ -16,7 +16,7 @@ const nextConfig = {
   theme: {
     screens: {
       xxs: "300px",
-      mobile: "400px",
+      mobile: "420px",
       xs: "480px",
       sm: "640px",
       md: "768px",
