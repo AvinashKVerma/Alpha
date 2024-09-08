@@ -41,7 +41,7 @@ export default function NavDetails({ content }) {
           </span>
         </div>
       </div>
-      <div className="max-mobile:hidden flex items-center gap-3 h-fit">
+      <div className="max-md:hidden flex items-center gap-3 h-fit">
         <span className="text-base font-normal">Total Price : </span>
         <span className="bg-[#fef2e9] font-semibold text-base text-[#F47A1F] px-2 py-1 rounded-full">
           ₹ 0.473 - ₹ 0.930 

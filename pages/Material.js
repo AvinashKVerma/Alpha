@@ -35,7 +35,7 @@ export default function Material() {
     <div
       className={`${poppins.className} flex max-mobile:flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
     >
-      <div className="grid grid-cols-1 mobile:grid-cols-3 w-full mobile:w-4/5 gap-5 flex-col">
+      <div className="grid max-mobile:grid-cols-1 mobile:grid-cols-2 ml:grid-cols-3 w-full mobile:w-4/5 gap-5 flex-col">
         {materialList.map((ele, i) => {
           return (
             <Link
@@ -75,7 +75,7 @@ export default function Material() {
           );
         })}
       </div>
-      <div className="max-mobile:hidden w-1/5 flex flex-col gap-5">
+      <div className="max-ml:hidden w-1/5 flex flex-col gap-5">
         <div className="flex flex-col gap-3 p-4 h-[158px] text-sm border-2 rounded-xl">
           <div>Your packaging</div>
           <div className="flex items-center gap-2">

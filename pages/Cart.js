@@ -23,29 +23,10 @@ export default function Cart() {
     }));
   };
 
-  // display: flex;
-  // flex-direction: row;
-  // align-items: flex-start;
-  // padding: 12px;
-  // gap: 12px;
-
-  // width: 320px;
-  // height: 227px;
-
-  // background: #FFFFFF;
-  // box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.07);
-  // border-radius: 12px;
-
-  // /* Inside auto layout */
-  // flex: none;
-  // order: 1;
-  // align-self: stretch;
-  // flex-grow: 0;
-
   return (
     <>
-      <div className="max-mobile:max-w-[320px] mb-[66px] flex max-mobile:flex-col gap-6 mobile:mt-10">
-        <div className="w-full mobile:w-3/5 flex flex-col gap-4">
+      <div className="max-mobile:max-w-[320px] mb-[66px] flex max-lg:flex-col gap-6 mobile:mt-10">
+        <div className="w-full lg:w-3/5 flex flex-col gap-4">
           <h1 className="font-bold text-xl">Your Cart</h1>
           <div className="flex gap-5 p-3 mobile:p-5 shadow rounded-lg">
             <div className="flex w-full items-start gap-3">
@@ -145,7 +126,7 @@ export default function Cart() {
             </div>
           </div>
         </div>
-        <div className="w-full mobile:w-2/5 flex flex-col gap-4">
+        <div className="w-full lg:w-2/5 flex flex-col gap-4">
           <h1 className="text-base font-semibold mobile:font-bold mobile:text-xl">
             Price details
           </h1>

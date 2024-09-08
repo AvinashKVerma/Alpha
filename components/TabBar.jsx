@@ -17,13 +17,15 @@ export default function TabBar({ content }) {
   );
 
   return (
-    <div className="flex w-full items-center flex-col max-mobile:max-w-[320px]">
+    <div className="flex w-full items-center flex-col">
       <Tabs
         aria-label="Options"
         color="default"
         variant="underlined"
         classNames={{
-          tabList: "w-full relative rounded-none gap-0 p-0 border-divider",
+          base: "w-full",
+          tabList:
+            "w-full justify-center relative rounded-none gap-0 p-0 border-divider",
           cursor: "w-full bg-transparent",
           tab: "max-w-fit px-0 h-4 mobile:h-12",
           tabContent: "group-data-[selected=true]:text-[#2CB041]",
@@ -40,7 +42,7 @@ export default function TabBar({ content }) {
                   className="flex gap-2 max-mobile:justify-between items-center"
                 >
                   <span
-                    className={`relative max-w-fit min-w-min box-border whitespace-nowrap border-medium sm:px-1 max-mobile:h-3 mobile:h-7 font-medium text-[9px] mobile:text-small rounded-full bg-transparent aspect-square flex justify-center items-center ${
+                    className={`relative max-w-fit min-w-min box-border whitespace-nowrap border-medium sm:px-1 max-mobile:h-3 mobile:h-4 lg:h-7 font-medium max-mobile:text-[9px] max-xs:text-[10px] max-sm:text-[11px] max-md:text-xs max-ml:text-sm rounded-full bg-transparent aspect-square flex justify-center items-center ${
                       isSelectedOrBefore
                         ? "border-[#2CB041] text-[#2CB041]"
                         : "border-default"
@@ -50,7 +52,7 @@ export default function TabBar({ content }) {
                   </span>
                   <span className="flex items-center">
                     <span
-                      className={`mobile:text-base text-[10px] font-medium ${
+                      className={`max-mobile:text-[10px] max-xs:text-[11px] max-sm:text-[11px] max-md:text-[13px] max-ml:text-sm font-medium ${
                         isSelectedOrBefore ? "text-[#2CB041]" : ""
                       }`}
                     >
@@ -62,7 +64,7 @@ export default function TabBar({ content }) {
                           isSelectedOrBefore
                             ? "border-[#2CB041]"
                             : "border-[#240812]"
-                        } border-dashed w-[14px] mobile:w-16 mx-auto`}
+                        } border-dashed max-mobile:w-[14px] max-xs:w-[32px] max-sm:w-[42px]  max-lg:w-16 lg:w-20 mx-auto`}
                       ></span>
                     )}
                   </span>

@@ -66,15 +66,18 @@ export default function Layout({ children }) {
       </div>
       <div className="flex flex-col gap-[35px] max-mobile:gap-5 flex-grow">
         <div className="flex mobile:gap-3 items-start">
-          <Link className="max-mobile:hidden" href={previousPage}>
+          <Link className="max-md:hidden" href={previousPage}>
             <IoArrowBackCircleOutline size={24} color="#081F38" />
           </Link>
           <NavDetails content={content} />
         </div>
         <div className="flex flex-col flex-grow justify-between">
           {children}
-          <div className="mobile:hidden fixed bg-white left-0 bottom-0 flex items-center justify-between w-full px-[30px] py-[14px]">
-            <div>Price</div>
+          <div className="ml:hidden fixed bg-white left-0 bottom-0 border flex items-center justify-between w-full px-[30px] py-[14px]">
+            <div className="flex flex-col items-start leading-[16px] justify-start">
+              <div>Price</div>
+              <div>₹470 - ₹930</div>
+            </div>
             <Link
               href={
                 pageOrder[currentIndex + 1]

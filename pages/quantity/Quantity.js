@@ -44,9 +44,9 @@ export default function Quantity() {
     },
   ];
   return (
-    <div className="flex max-mobile:max-w-screen-mobile mb-[72px] gap-5">
-      <div className="mobile:w-4/5 flex max-mobile:flex-col gap-4 w-full">
-        <div className="mobile:w-1/2 h-[715px] border-2 rounded-xl">
+    <div className="flex max-md:max-w-full mb-[72px] gap-5">
+      <div className="grid sm:grid-cols-2 w-full h-fit gap-4">
+        <div className="h-[715px] border-2 rounded-xl">
           <div className="h-[43px] bg-[#F9F9F9] rounded-t-xl border-b-2 flex justify-around px-2 items-center text-[#808b98]">
             <span className="text-xs font-normal">Size</span>
             <span className="text-xs font-normal">Price</span>
@@ -74,7 +74,7 @@ export default function Quantity() {
                       base: cn(
                         "inline-flex px-5 h-[96px] border-b-2 max-w-full w-full bg-content1 m-0",
                         "hover:bg-content2 items-center justify-start",
-                        "cursor-pointer gap-2 p-4 border-b-2"
+                        "cursor-pointer gap-2 p-2 border-b-2 max-md:first:rounded-t-xl last:rounded-xl"
                       ),
                       icon: "rounded-full",
                       label: "w-full last:rounded-b-xl",
@@ -105,11 +105,11 @@ export default function Quantity() {
             </CheckboxGroup>
           </div>
         </div>
-        <div className="max-mobile:hidden w-1/2 h-[488px] border-2 flex justify-center items-center rounded-xl">
+        <div className="max-sm:hidden h-auto border-2 flex justify-center items-center rounded-xl">
           <Image src={"/size.png"} alt="size" width={350} height={356} />
         </div>
       </div>
-      <div className="max-mobile:hidden w-1/5 flex flex-col gap-5">
+      <div className="max-ml:hidden w-1/5 flex flex-col gap-5">
         <div className="flex flex-col gap-3 p-4 text-sm border-2 rounded-xl">
           <div className="">Your packaging</div>
           <div className="flex items-center gap-2">
