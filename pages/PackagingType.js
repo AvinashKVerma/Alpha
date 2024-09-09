@@ -70,16 +70,16 @@ export default function ProductsDetails() {
               className="broder-[#E45971] p-4 max-h-[394px] scrollbar-hide overflow-y-scroll"
             >
               <CardBody className="p-0">
-                <div className="flex gap-5 items-start mobile:justify-center mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">
-                  <div className="mobile:pt-5 w-fit">{item.icon}</div>
+                <div className="flex gap-5 items-start pt-2 mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">
+                  <div className="w-20 aspect-square">{item.icon}</div>
                   <div className="flex flex-col gap-5 max-mobile:gap-[6px]">
                     <div className="mobile:text-xl text-base font-semibold mobile:text-center">
                       {item.name}
                     </div>
-                    <span className="mobile:text-center text-xs mobile:text-sm line-clamp-3">
+                    <span className="mobile:text-center text-xs mobile:text-sm max-mobile:line-clamp-3">
                       {item.description}
                     </span>
-                    <span className="text-xs font-semibold line-clamp-3">
+                    <span className="mobile:hidden text-xs font-semibold line-clamp-3">
                       See More
                     </span>
                   </div>

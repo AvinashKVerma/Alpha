@@ -61,18 +61,7 @@ export default function Size() {
           />
         </div>
         <div className="grid xs:grid-cols-2 w-full h-fit gap-4">
-          <div className="border-2 border-b-0 h-fit rounded-xl">
-            <div className="max-md:hidden h-12 bg-[#F9F9F9] rounded-t-xl flex justify-between px-2 items-center text-[#808b98]">
-              <div className="font-normal flex justify-evenly">
-                <span className="text-xs font-normal">Size</span>
-                <span className="text-xs font-normal">
-                  Width x Height x Depth
-                </span>
-              </div>
-              <div className="text-xs font-normal">
-                Filling volume (approx.)
-              </div>
-            </div>
+          <div className="xs:border-2 border-b-0 h-fit rounded-xl">
             <div className="flex flex-col w-full rounded-b-xl rounded-t-xl gap-0">
               <CheckboxGroup
                 value={groupSelected}
@@ -82,9 +71,58 @@ export default function Size() {
                 }}
                 classNames={{
                   base: "w-full w-max-full",
-                  wrapper: "gap-0  rounded-t-xl rounded-b-xl",
+                  wrapper: "xs:gap-0 gap-3 rounded-t-xl rounded-b-xl",
                 }}
               >
+                <label
+                  className="max-xs:hidden inline-flex rounded-t-xl max-w-full w-full bg-[#F9F9F9] items-center justify-start gap-2 p-2 border-b-2 max-md:first:rounded-t-xl last:rounded-xl"
+                  aria-label="XS"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="relative inline-flex items-center justify-center flex-shrink-0 overflow-hidden before:content-[''] before:absolute before:inset-0 before:border-solid before:border-2 before:box-border before:border-transparent after:content-[''] after:absolute after:inset-0 after:scale-50 after:opacity-0 after:origin-center group-data-[selected=true]:after:scale-100 group-data-[selected=true]:after:opacity-100 group-data-[hover=true]:before:bg-default-100 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background after:bg-primary after:text-primary-foreground text-primary-foreground w-5 h-5 mr-2 rtl:ml-2 rtl:mr-[unset] rounded-[calc(theme(borderRadius.medium)*0.6)] before:rounded-[calc(theme(borderRadius.medium)*0.6)] after:rounded-[calc(theme(borderRadius.medium)*0.6)] before:transition-colors group-data-[pressed=true]:scale-95 transition-transform after:transition-transform-opacity after:!ease-linear after:!duration-200 motion-reduce:transition-none"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      role="presentation"
+                      viewBox="0 0 17 18"
+                      className="z-10 opacity-0 group-data-[selected=true]:opacity-100 w-4 h-3 transition-opacity motion-reduce:transition-none rounded-full"
+                    >
+                      <polyline
+                        fill="none"
+                        points="1 9 7 14 15 4"
+                        stroke="white"
+                        strokeDasharray="22"
+                        strokeDashoffset="66"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                      ></polyline>
+                    </svg>
+                  </span>
+                  <span
+                    id=":Rr6cvf6jt7qcq:"
+                    className="relative text-foreground select-none text-medium transition-colors-opacity before:transition-width motion-reduce:transition-none w-full"
+                  >
+                    <div className="w-full flex justify-between text-[#808b98] gap-2">
+                      <div className="flex md:justify-start w-full justify-between items-center gap-4">
+                        <div className="items-center relative max-w-fit min-w-min box-border whitespace-nowrap rounded-full w-12 flex justify-center items-center`">
+                          <span className="flex-1 text-inherit font-normal px-2">
+                            <span className="text-xs font-normal">Size</span>
+                          </span>
+                        </div>
+                        <span className="text-xs font-normal">
+                          Width x Height x Depth
+                        </span>
+                      </div>
+                      <div className="max-md:hidden flex items-center">
+                        <span className="text-xs font-normal">
+                          Filling volume (approx.)
+                        </span>
+                      </div>
+                    </div>
+                  </span>
+                </label>
                 {sizeList.map((ele, i) => {
                   return (
                     <Checkbox
@@ -94,10 +132,10 @@ export default function Size() {
                         base: cn(
                           "inline-flex h-[80px] max-w-full w-full bg-content1 m-0",
                           "hover:bg-content2 items-center justify-start",
-                          "cursor-pointer gap-2 p-2 border-b-2 max-md:first:rounded-t-xl last:rounded-xl"
+                          "cursor-pointer gap-2 p-2 max-xs:rounded-xl max-xs:border-2 last:border-none border-b-2 max-md:first:rounded-t-xl last:rounded-xl"
                         ),
                         icon: "rounded-full",
-                        label: "w-full",
+                        label: "max-xs:rounded-xl w-full",
                       }}
                       value={ele.size}
                     >
@@ -136,17 +174,17 @@ export default function Size() {
           </div>
         </div>
       </div>
-      <div className="max-ml:hidden w-1/5 flex flex-col gap-5">
-        <div className="flex flex-col gap-3 p-4 sm:p-3 md:p-4 h-auto text-xs sm:text-sm md:text-base border-2 rounded-xl">
+      <div className="max-ml:hidden w-1/4 flex flex-col gap-5">
+        <div className="flex flex-col min-w-[250px] gap-3 p-4 sm:p-3 md:p-4 pr-1 h-auto text-xs sm:text-sm md:text-base border-2 rounded-xl">
           <div className="text-sm sm:text-base">Your packaging</div>
-          <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm md:text-base">
+          <div className="flex flex-wrap min-w-fit items-center gap-2 text-xs sm:text-sm md:text-base">
             <LuCheck className="text-sm" />
             <span>Type :</span>
             <span className="font-semibold">Flat bottom pouch</span>
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 p-4 bg-[#FDD40A1A] text-sm border-2 rounded-xl">
+        <div className="flex flex-col min-w-[250px] gap-3 p-4 bg-[#FDD40A1A] text-sm border-2 rounded-xl">
           <span>Note</span>
           <span>
             When making your purchase, opting for a higher quantity can

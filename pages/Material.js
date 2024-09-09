@@ -75,8 +75,8 @@ export default function Material() {
           );
         })}
       </div>
-      <div className="max-ml:hidden w-1/5 flex flex-col gap-5">
-        <div className="flex flex-col gap-3 p-4 h-[158px] text-sm border-2 rounded-xl">
+      <div className="max-ml:hidden w-1/4 flex flex-col gap-5">
+        <div className="flex flex-col gap-3 p-4 pr-1 min-w-[250px] text-sm border-2 rounded-xl">
           <div>Your packaging</div>
           <div className="flex items-center gap-2">
             <LuCheck />
@@ -95,7 +95,7 @@ export default function Material() {
             <span className="font-semibold">2000</span>
           </div>
         </div>
-        <div className="flex flex-col gap-3 p-4 bg-[#FDD40A1A] text-sm border-2 rounded-xl">
+        <div className="flex flex-col gap-3 min-w-[250px] p-4 bg-[#FDD40A1A] text-sm border-2 rounded-xl">
           <span>Note</span>
           <span>
             When making your purchase, opting for a higher quantity can
