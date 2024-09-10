@@ -132,7 +132,7 @@ export default function Size() {
                         base: cn(
                           "inline-flex h-[80px] max-w-full w-full bg-content1 m-0",
                           "hover:bg-content2 items-center justify-start",
-                          "cursor-pointer gap-2 p-2 max-xs:rounded-xl max-xs:border-2 last:border-none border-b-2 max-md:first:rounded-t-xl last:rounded-xl"
+                          "cursor-pointer gap-2 p-2 max-xs:rounded-xl max-xs:border-2 xs:last:border-none border-b-2 max-md:first:rounded-t-xl last:rounded-xl"
                         ),
                         icon: "rounded-full",
                         label: "max-xs:rounded-xl w-full",

@@ -35,7 +35,7 @@ export default function Material() {
     <div
       className={`${poppins.className} flex max-mobile:flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
     >
-      <div className="grid max-mobile:grid-cols-1 mobile:grid-cols-2 ml:grid-cols-3 w-full mobile:w-4/5 gap-5 flex-col">
+      <div className="grid max-mobile:grid-cols-1 mobile:grid-cols-2 w-full ml:w-4/5 gap-5 flex-col">
         {materialList.map((ele, i) => {
           return (
             <Link
@@ -62,11 +62,11 @@ export default function Material() {
                   <span className="text-sm mobile:text-lg font-semibold leading-none">
                     {ele.name}
                   </span>
-                  <span className="text-xs mobile:text-sm">{ele.type}</span>
-                  <span className="text-xs mobile:text-base p-1 text-center w-fit rounded-full px-2 align-middle bg-[#2F46931A] font-semibold">
+                  <span className="text-xs sm:text-sm">{ele.type}</span>
+                  <span className="text-xs sm:text-base p-1 text-center w-fit rounded-full px-2 align-middle bg-[#2F46931A] font-semibold">
                     {ele.price}
                   </span>
-                  <span className="text-xs mobile:text-base p-1 align-middle">
+                  <span className="text-xs sm:text-base p-1 align-middle">
                     View detail
                   </span>
                 </div>
