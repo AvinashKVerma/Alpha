@@ -159,7 +159,7 @@ export default function Cart() {
               </span>
               <span className="flex justify-between w-full">
                 <span className="text-[#03172B96]">Discount on MRP</span>
-                <span>- ₹ 549</span>
+                <span className="text-[#1CC618]">- ₹ 549</span>
               </span>
               <span className="flex justify-between w-full">
                 <span className="text-[#03172B96]">Delivery fee</span>
