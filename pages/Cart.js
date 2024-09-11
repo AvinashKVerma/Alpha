@@ -75,23 +75,28 @@ export default function Cart() {
                   </div>
                 </div>
                 <div className="flex justify-between gap-4">
-                  <div className="flex max-mobile:flex-col gap-4">
+                  <div className="flex gap-4">
                     <div className="flex flex-wrap md:flex-nowrap gap-4">
                       <Select
                         aria-label="Number of orders"
                         name="qunatity"
-                        className="min-w-[116px] w-fit mobile:max-w-xs -xs h-8 mobile:h-10"
+                        className="min-w-[116px] text-xs w-fit mobile:max-w-xs -xs:h-8 mobile:h-10"
                         classNames={{
-                          trigger: "min-h-9 h-9 px-4",
-                          value: "max-mobile:text-xs",
-                          selectorIcon: "static",
-                          listbox: "text-[8px] p-0 w-fit",
+                          mainWrapper: "w-fit min-w-[80px]",
+                          innerWrapper: "w-fit min-w-[80px]",
+                          base: "text-xs",
+                          trigger: "min-h-9 rounded-md h-9 gap-1 px-1",
+                          selectedIcon: "static",
+                          value: "max-mobile:text-xs flex justify-center",
+                          selectorIcon: "static p-0",
+                          listboxWrapper: "w-fit",
+                          listbox: "p-0 w-fit",
                           popoverContent: "text-[8px]",
                         }}
                         selectedKeys={[value.qunatity]}
                         onChange={handleSelectionChange}
                       >
-                        <SelectItem className="text-[8px]" key="">
+                        <SelectItem className="text-[8px] roun" key="">
                           Select
                         </SelectItem>
                         {[
@@ -100,7 +105,16 @@ export default function Cart() {
                           "Quantity :1500",
                           "Quantity :2000",
                         ].map((ele) => (
-                          <SelectItem className="text-[8px]" key={ele}>
+                          <SelectItem
+                            classNames={{
+                              listboxWrapper: "text-xs max-w-fit",
+                              base: "text-xs",
+                              title: "text-xs p-0",
+                              selectedIcon: "hidden",
+                              value: "text-xs p-0",
+                            }}
+                            key={ele}
+                          >
                             {ele}
                           </SelectItem>
                         ))}
@@ -110,11 +124,19 @@ export default function Cart() {
                       <Select
                         aria-label="Sizes"
                         name="size"
-                        className="max-w-[73px] mobile:max-w-xs max-mobile:text-xs h-8 mobile:h-10"
+                        className="min-w-fit text-xs w-fit mobile:max-w-xs -xs:h-8 mobile:h-10"
                         classNames={{
-                          trigger: "min-h-9 h-9 px-1",
-                          value: "max-mobile:text-xs",
-                          selectorIcon: "static",
+                          mainWrapper: "w-fit min-w-[40px]",
+                          innerWrapper: "w-fit min-w-[40px]",
+                          base: "text-xs",
+                          trigger: "min-h-9 rounded-md h-9 gap-1 px-1",
+                          selectedIcon: "static",
+                          value: "max-mobile:text-xs flex justify-center",
+                          selectorIcon: "static p-0",
+                          listboxWrapper: "w-fit",
+                          content: "rounded-md",
+                          listbox: "p-0 w-fit",
+                          popoverContent: "text-[8px]",
                         }}
                         selectedKeys={[value.size]}
                         onChange={handleSelectionChange}
@@ -126,7 +148,19 @@ export default function Cart() {
                           "Size : XL",
                           "Size : 2XL",
                         ].map((ele) => (
-                          <SelectItem key={ele}>{ele}</SelectItem>
+                          <SelectItem
+                            classNames={{
+                              content: "rounded-md",
+                              listboxWrapper: "text-xs max-w-fit",
+                              base: "text-xs",
+                              title: "text-xs p-0",
+                              selectedIcon: "hidden",
+                              value: "text-xs p-0",
+                            }}
+                            key={ele}
+                          >
+                            {ele}
+                          </SelectItem>
                         ))}
                       </Select>
                     </div>
@@ -135,7 +169,7 @@ export default function Cart() {
                     <DeleteIcon /> Delete
                   </div>
                 </div>
-                <Divider />
+                <Divider className="sm:hidden" />
                 <div className="sm:hidden text-[#9FA9B3] flex justify-end items-center gap-2">
                   <DeleteIcon /> Delete
                 </div>
