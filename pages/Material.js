@@ -1,7 +1,8 @@
 "use client";
 import { Button, Image, Link } from "@nextui-org/react";
+import axios from "axios";
 import { Poppins } from "next/font/google";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LuCheck } from "react-icons/lu";
 
 const poppins = Poppins({
@@ -9,8 +10,40 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
 export default function Material() {
   const [selectedMaterial, setSelectedMaterial] = useState(null); // State to track selected material
+  const [materials, setMaterials] = useState([]);
+
+  useEffect(() => {
+    getSizes();
+  }, []);
+
+  async function getSizes() {
+    try {
+      const response = await axios.get(`${baseUrl}/api/v1/resources/material`);
+      if (response.data.status === 200) {
+        console.log(response.data.data);
+        const responseData = response.data.data.map((ele) => {
+          return {
+            createdAt: ele.createdAt,
+            delete_flag: ele.delete_flag,
+            img: "/Material.png",
+            // img: ele.material_image_url,
+            name: ele.name,
+            type: ele.description,
+            price: "₹" + ele.price,
+            material_id: 1,
+            updatedAt: "2024-09-10T09:39:19.000Z",
+          };
+        });
+        setMaterials(responseData);
+      }
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+    }
+  }
 
   const materialList = [
     {
@@ -36,7 +69,7 @@ export default function Material() {
       className={`${poppins.className} flex max-mobile:flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
     >
       <div className="grid max-mobile:grid-cols-1 mobile:grid-cols-2 w-full ml:w-4/5 gap-5 flex-col">
-        {materialList.map((ele, i) => {
+        {materials.map((ele, i) => {
           return (
             <Link
               className={`text-black h-fit p-3 cursor-pointer transition-all duration-300 ${

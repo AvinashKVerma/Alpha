@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Pouch } from "@/components/Pouch";
 import {
   Card,
@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import axios from "axios";
+import ResourcesContext from "@/context/ResourcesProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -19,6 +20,7 @@ const poppins = Poppins({
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export default function ProductsDetails() {
+  const { resources, setResources } = useContext(ResourcesContext);
   const productList = [
     {
       icon: <Pouch color="#4293B7" fill="#ebedf5" />,
@@ -65,7 +67,7 @@ export default function ProductsDetails() {
   async function getPackagingType() {
     try {
       const response = await axios.get(
-        `${baseUrl}/api/v1/resources/list-packaging-type-size/1`
+        `${baseUrl}/api/v1/resources/packaging-type`
       );
       console.log(response.data); // Log the response
     } catch (error) {

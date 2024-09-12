@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Checkbox,
@@ -10,42 +10,75 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { LuCheck } from "react-icons/lu";
+import axios from "axios";
+import ResourcesContext from "@/context/ResourcesProvider";
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Size() {
+  const { resources, setResources } = useContext(ResourcesContext);
   const [groupSelected, setGroupSelected] = useState([]);
+  const [sizes, setSizes] = useState([]);
 
-  const sizeList = [
-    {
-      size: "XS",
-      dimension: "170 x 110 x 70 mm",
-      product: "coffee",
-      weight: "250 g",
-    },
-    {
-      size: "S",
-      dimension: "210 x 130 x 80 mm",
-      product: "coffee",
-      weight: "250 g",
-    },
-    {
-      size: "M",
-      dimension: "240 x 160 x 90 mm",
-      product: "coffee",
-      weight: "250 g",
-    },
-    {
-      size: "L",
-      dimension: "265 x 190 x 110 mm",
-      product: "coffee",
-      weight: "250 g",
-    },
-    {
-      size: "XL",
-      dimension: "310 x 250 x 110 mm",
-      product: "coffee",
-      weight: "250 g",
-    },
-  ];
+  useEffect(() => {
+    getSizes();
+  }, []);
+
+  async function getSizes() {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/api/v1/resources/list-packaging-type-size/1`
+      );
+      if (response.data.status === 200) {
+        const responseData = response.data.data.map((ele) => {
+          return {
+            size: ele.sizeId.name,
+            dimension: ele.sizeId.dimensions,
+            product: "coffee",
+            weight: ele.sizeId.filling_volume,
+            packaging_type_size_id: ele.packaging_type_size_id,
+            size_id: ele.sizeId.size_id,
+          };
+        });
+        setSizes(responseData);
+      }
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+    }
+  }
+
+  // const sizeList = [
+  //   {
+  //     size: "XS",
+  //     dimension: "170 x 110 x 70 mm",
+  //     product: "coffee",
+  //     weight: "250 g",
+  //   },
+  //   {
+  //     size: "S",
+  //     dimension: "210 x 130 x 80 mm",
+  //     product: "coffee",
+  //     weight: "250 g",
+  //   },
+  //   {
+  //     size: "M",
+  //     dimension: "240 x 160 x 90 mm",
+  //     product: "coffee",
+  //     weight: "250 g",
+  //   },
+  //   {
+  //     size: "L",
+  //     dimension: "265 x 190 x 110 mm",
+  //     product: "coffee",
+  //     weight: "250 g",
+  //   },
+  //   {
+  //     size: "XL",
+  //     dimension: "310 x 250 x 110 mm",
+  //     product: "coffee",
+  //     weight: "250 g",
+  //   },
+  // ];
 
   return (
     <div className="flex max-md:w-full mb-[100px] gap-5">
@@ -123,7 +156,7 @@ export default function Size() {
                     </div>
                   </span>
                 </label>
-                {sizeList.map((ele, i) => {
+                {sizes.map((ele, i) => {
                   return (
                     <Checkbox
                       key={i}

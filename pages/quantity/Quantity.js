@@ -1,53 +1,85 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, CheckboxGroup, Link, Checkbox, cn } from "@nextui-org/react";
 import Image from "next/image";
 import { LuCheck } from "react-icons/lu";
+import axios from "axios";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Quantity() {
   const [groupSelected, setGroupSelected] = useState([]);
-  const sizeList = [
-    {
-      size: "1000",
-      price: "₹ 5000",
-      number: "1",
-    },
-    {
-      size: "2000",
-      price: "₹ 5000",
-      number: "4",
-    },
-    {
-      size: "3000",
-      price: "₹ 5000",
-      number: "6",
-    },
-    {
-      size: "5000",
-      price: "₹ 5000",
-      number: "10",
-    },
-    {
-      size: "10000",
-      price: "₹ 5000",
-      number: "20",
-    },
-    {
-      size: "15000",
-      price: "₹ 5000",
-      number: "30",
-    },
-    {
-      size: "20000",
-      price: "₹ 5000",
-      number: "40",
-    },
-  ];
+  const [quantities, setQuantities] = useState([]);
+
+  useEffect(() => {
+    getSizes();
+  }, []);
+
+  async function getSizes() {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/api/v1/resources/list-packaging-type-size-quantity/1`
+      );
+      if (response.data.status === 200) {
+        const responseData = response.data.data.map((ele) => {
+          return {
+            size: ele.quantityId.quantity,
+            price: ele.quantityId.price,
+            number: ele.quantityId.design_number,
+            packaging_type_size_quantity_id:
+              ele.packaging_type_size_quantity_id,
+            quantity_id: ele.quantityId.quantity_id,
+          };
+        });
+        setQuantities(responseData);
+      }
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+    }
+  }
+
+  console.log(groupSelected);
+  // const sizeList = [
+  //   {
+  //     size: "1000",
+  //     price: "₹ 5000",
+  //     number: "1",
+  //   },
+  //   {
+  //     size: "2000",
+  //     price: "₹ 5000",
+  //     number: "4",
+  //   },
+  //   {
+  //     size: "3000",
+  //     price: "₹ 5000",
+  //     number: "6",
+  //   },
+  //   {
+  //     size: "5000",
+  //     price: "₹ 5000",
+  //     number: "10",
+  //   },
+  //   {
+  //     size: "10000",
+  //     price: "₹ 5000",
+  //     number: "20",
+  //   },
+  //   {
+  //     size: "15000",
+  //     price: "₹ 5000",
+  //     number: "30",
+  //   },
+  //   {
+  //     size: "20000",
+  //     price: "₹ 5000",
+  //     number: "40",
+  //   },
+  // ];
   return (
     <div className="flex max-md:max-w-full mb-[72px] gap-5">
       <div className="grid sm:grid-cols-2 w-full h-fit gap-4">
-        <div className="border-2 rounded-xl">
-          <div className="flex flex-col w-full h-full gap-0">
+        <div className="border-2 h-fit rounded-xl">
+          <div className="flex flex-col w-full h-fit gap-0">
             <CheckboxGroup
               value={groupSelected}
               onChange={(e) => {
@@ -126,7 +158,7 @@ export default function Quantity() {
                   </div>
                 </span>
               </label>
-              {sizeList.map((ele, i) => {
+              {quantities.map((ele, i) => {
                 return (
                   <Checkbox
                     key={i}
@@ -140,7 +172,7 @@ export default function Quantity() {
                       icon: "rounded-full",
                       label: "w-full last:rounded-b-xl",
                     }}
-                    value={ele.size}
+                    value={ele.quantity_id}
                   >
                     <div className="w-full flex justify-between text-[#03172B] gap-2">
                       <div className="flex flex-col justify-evenly items-center">
@@ -158,7 +190,9 @@ export default function Quantity() {
                         </span>
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-lg font-medium">{ele.price}</span>
+                        <span className="text-lg font-medium">
+                          {Math.floor(parseFloat(ele.price))}
+                        </span>
                         <span className="text-lg text-[#03172B80] font-medium">{`(₹50/piece)`}</span>
                       </div>
                       <div className="flex items-center gap-1 max-mobile:hidden">
