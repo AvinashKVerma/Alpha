@@ -58,7 +58,6 @@ export default function Layout({ children }) {
   const previousPage =
     previousIndex === 0 ? "/" : `/${pageOrder[previousIndex]}`;
 
-  console.log(pathName, pageOrder[currentIndex + 1]);
   return (
     <div className="flex flex-col gap-5 mobile:gap-8 h-full">
       <div className="mobile:mt-8">

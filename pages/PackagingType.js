@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Pouch } from "@/components/Pouch";
 import {
   Card,
@@ -10,11 +10,14 @@ import {
   Link,
 } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
+import axios from "axios";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export default function ProductsDetails() {
   const productList = [
     {
@@ -54,6 +57,21 @@ export default function ProductsDetails() {
       quantity: 500,
     },
   ];
+
+  useEffect(() => {
+    getPackagingType();
+  }, []);
+
+  async function getPackagingType() {
+    try {
+      const response = await axios.get(
+        `${baseUrl}/api/v1/resources/list-packaging-type-size/1`
+      );
+      console.log(response.data); // Log the response
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+    }
+  }
   return (
     <div
       className={`grid max-sm:grid-cols-1 scrollbar-hide max-ml:grid-cols-2 max-lg:grid-cols-3 lg:grid-cols-4 mb-[72px] gap-4 ${poppins.className}`}
