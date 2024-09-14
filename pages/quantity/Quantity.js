@@ -30,6 +30,7 @@ export default function Quantity() {
             quantity_id: ele.quantityId.quantity_id,
           };
         });
+        console.log(response.data.data);
         setQuantities(responseData);
       }
     } catch (error) {
@@ -37,7 +38,6 @@ export default function Quantity() {
     }
   }
 
-  console.log(groupSelected);
   // const sizeList = [
   //   {
   //     size: "1000",
@@ -167,7 +167,7 @@ export default function Quantity() {
                       base: cn(
                         "flex px-5 h-[86px] max-w-full w-full m-0",
                         "hover:bg-content2 items-baseline justify-start",
-                        "cursor-pointer gap-2 p-2 last:border-none border-b-2 last:rounded-xl"
+                        "cursor-pointer gap-2 p-2 last:border-none border-b-2 last:rounded-b-xl"
                       ),
                       icon: "rounded-full",
                       label: "w-full last:rounded-b-xl",
@@ -237,10 +237,12 @@ export default function Quantity() {
             run.
           </span>
         </div>
-        <Link href="material" className="w-full min-w-[250px]">
-          <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
-            Confirm
-          </Button>
+        <Link
+          isDisabled={groupSelected.length === 0}
+          href={`material?quantity_id=${groupSelected[0]}`}
+          className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
+        >
+          Confirm
         </Link>
       </div>
     </div>

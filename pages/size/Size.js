@@ -165,12 +165,12 @@ export default function Size() {
                         base: cn(
                           "inline-flex h-[80px] max-w-full w-full bg-content1 m-0",
                           "hover:bg-content2 items-center justify-start",
-                          "cursor-pointer gap-2 p-2 max-xs:rounded-xl max-xs:border-2 xs:last:border-none border-b-2 max-md:first:rounded-t-xl last:rounded-xl"
+                          "cursor-pointer gap-2 p-2 max-xs:rounded-xl max-xs:border-2 xs:last:border-none border-b-2 max-md:first:rounded-t-xl last:rounded-b-xl"
                         ),
                         icon: "rounded-full",
                         label: "max-xs:rounded-xl w-full",
                       }}
-                      value={ele.size}
+                      value={ele.size_id}
                     >
                       <div className="w-full flex justify-between text-[#03172B] gap-2">
                         <div className="flex justify-evenly items-center gap-4">
@@ -226,10 +226,12 @@ export default function Size() {
             run.
           </span>
         </div>
-        <Link href="quantity" className="w-full">
-          <Button className="w-full text-lg font-bold bg-[#253670] text-white h-14">
-            Confirm
-          </Button>
+        <Link
+          isDisabled={groupSelected.length === 0}
+          href={`quantity?size_id=${groupSelected[0]}`}
+          className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
+        >
+          Confirm
         </Link>
       </div>
     </div>

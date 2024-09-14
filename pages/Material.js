@@ -24,7 +24,6 @@ export default function Material() {
     try {
       const response = await axios.get(`${baseUrl}/api/v1/resources/material`);
       if (response.data.status === 200) {
-        console.log(response.data.data);
         const responseData = response.data.data.map((ele) => {
           return {
             createdAt: ele.createdAt,
@@ -38,6 +37,7 @@ export default function Material() {
             updatedAt: "2024-09-10T09:39:19.000Z",
           };
         });
+        console.log(response.data.data);
         setMaterials(responseData);
       }
     } catch (error) {
@@ -60,6 +60,7 @@ export default function Material() {
     },
   ];
 
+  console.log(materials);
   const handleSelect = (index) => {
     setSelectedMaterial(index); // Update the selected material
   };
@@ -71,18 +72,17 @@ export default function Material() {
       <div className="grid max-mobile:grid-cols-1 mobile:grid-cols-2 w-full ml:w-4/5 gap-5 flex-col">
         {materials.map((ele, i) => {
           return (
-            <Link
-              className={`text-black h-fit p-3 cursor-pointer transition-all duration-300 ${
-                selectedMaterial === i
+            <div
+              className={`text-black h-fit p-3 cursor-pointer transition-all duration-300 hover:bg-slate-100 ${
+                selectedMaterial === ele.material_id
                   ? "bg-[#ebeeef] shadow-lg border-2"
                   : "bg-white"
               }`}
-              href="/cart"
               key={i}
             >
               <div
                 className="flex gap-4"
-                onClick={() => handleSelect(i)} // On click, select this material
+                onClick={() => handleSelect(ele.material_id)} // On click, select this material
               >
                 <Image
                   src={ele.img}
@@ -104,7 +104,7 @@ export default function Material() {
                   </span>
                 </div>
               </div>
-            </Link>
+            </div>
           );
         })}
       </div>
@@ -137,7 +137,11 @@ export default function Material() {
             run.
           </span>
         </div>
-        <Link href="/cart" className="w-full">
+        <Link
+          isDisabled={!selectedMaterial}
+          href={`/cart?material_id=${selectedMaterial}`}
+          className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
+        >
           <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
             Confirm
           </Button>
