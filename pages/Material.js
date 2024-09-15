@@ -28,12 +28,11 @@ export default function Material() {
           return {
             createdAt: ele.createdAt,
             delete_flag: ele.delete_flag,
-            img: "/Material.png",
-            // img: ele.material_image_url,
+            img: ele.material_image_url || "/Material.png",
             name: ele.name,
             type: ele.description,
             price: "₹" + ele.price,
-            material_id: 1,
+            material_id: ele.material_id,
             updatedAt: "2024-09-10T09:39:19.000Z",
           };
         });
@@ -44,21 +43,6 @@ export default function Material() {
     }
   }
 
-  const materialList = [
-    {
-      img: "/Material.png",
-      name: "Matte Look",
-      type: "Smooth, non-reflective, sleek finish",
-      price: "₹ 0.473 - ₹ 0.930",
-    },
-    {
-      img: "/Material.png",
-      name: "Glossy Look",
-      type: "Shiny, reflective finish",
-      price: "₹ 0.473 - ₹ 0.930",
-    },
-  ];
-
   const handleSelect = (index) => {
     setSelectedMaterial(index); // Update the selected material
   };
@@ -67,7 +51,7 @@ export default function Material() {
     <div
       className={`${poppins.className} flex max-mobile:flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
     >
-      <div className="grid max-mobile:grid-cols-1 mobile:grid-cols-2 w-full ml:w-4/5 gap-5 flex-col">
+      <div className="grid max-mobile:grid-cols-1 mobile:grid-cols-2 w-full ml:w-4/5 gap-5 flex-col h-fit">
         {materials.map((ele, i) => {
           return (
             <div

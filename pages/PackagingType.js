@@ -25,7 +25,6 @@ export default function ProductsDetails() {
       );
       if (response.status === 200) {
         const responseData = response.data.data.map((ele) => {
-          console.log(ele);
           return {
             packaging_id: ele.packaging_id,
             icon: ele.packaging_image_icon_url,
