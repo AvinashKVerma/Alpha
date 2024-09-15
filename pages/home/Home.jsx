@@ -2,10 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { Image, Link } from "@nextui-org/react";
 import axios from "axios";
+import { useAppDispatch } from "@/lib/store/hooks";
+import { addToCart } from "@/lib/store/features/CartSlice";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export default function Home() {
   const [productList, setProductList] = useState([]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     getPackagingType();
@@ -56,6 +59,9 @@ export default function Home() {
                 .replace(" ", "-")}/packaging-type`}
               key={ele.name}
               className="flex flex-col ml:gap-5 gap-2"
+              onClick={() => {
+                dispatch(addToCart("abcd"));
+              }}
             >
               <Image
                 className="w-full max-w-full"
