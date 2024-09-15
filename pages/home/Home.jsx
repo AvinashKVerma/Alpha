@@ -18,7 +18,6 @@ export default function Home() {
       );
       if (response.status === 200) {
         const responseData = response.data.data.map((ele) => {
-          console.log(ele);
           return {
             packaging_id: ele.packaging_id,
             icon: ele.packaging_image_icon_url,
@@ -58,7 +57,11 @@ export default function Home() {
               key={ele.name}
               className="flex flex-col ml:gap-5 gap-2"
             >
-              <Image src={ele.packaging_image_url} alt="ele" />
+              <Image
+                className="w-full max-w-full"
+                src={ele.packaging_image_url}
+                alt={ele.name}
+              />
               <div className="w-full flex flex-col gap-1 max-mobile:gap-3 text-left">
                 <div className="font-medium max-lg:text-sm max-mobile:font-medium">
                   {ele.name}

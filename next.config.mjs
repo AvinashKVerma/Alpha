@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    domains: ["packiqbackend.setstatetech.com"],
     remotePatterns: [
       {
         protocol: "https",

@@ -1,15 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Divider,
-  Image,
-  Link,
-} from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Divider, Link } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import axios from "axios";
+import Image from "next/image";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -67,9 +61,13 @@ export default function ProductsDetails() {
             >
               <CardBody className="p-0">
                 <div className="flex gap-5 items-start pt-2 mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">
-                  <div className="w-20 aspect-square">
-                    <Image src={item.icon} alt="size" width={80} height={80} />
-                  </div>
+                  <Image
+                    src={item.icon}
+                    className="min-w-20"
+                    alt="size"
+                    width={80}
+                    height={80}
+                  />
                   <div className="flex flex-col gap-5 max-mobile:gap-[6px]">
                     <div className="mobile:text-xl text-base font-semibold mobile:text-center">
                       {item.name}
