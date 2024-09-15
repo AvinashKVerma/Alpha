@@ -4,6 +4,7 @@ import { Card, CardBody, CardFooter, Divider, Link } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import axios from "axios";
 import Image from "next/image";
+import { useAppSelector } from "@/lib/store/hooks";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -13,6 +14,9 @@ const poppins = Poppins({
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export default function ProductsDetails() {
   const [productList, setProductList] = useState([]);
+  const cartItem = useAppSelector((state) => state.cart.item);
+
+  console.log(cartItem);
 
   useEffect(() => {
     getPackagingType();
