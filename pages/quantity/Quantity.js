@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, CheckboxGroup, Link, Checkbox, cn } from "@nextui-org/react";
 import Image from "next/image";
 import { LuCheck } from "react-icons/lu";
@@ -30,7 +30,6 @@ export default function Quantity() {
             quantity_id: ele.quantityId.quantity_id,
           };
         });
-        console.log(response.data.data);
         setQuantities(responseData);
       }
     } catch (error) {
@@ -38,43 +37,6 @@ export default function Quantity() {
     }
   }
 
-  // const sizeList = [
-  //   {
-  //     size: "1000",
-  //     price: "₹ 5000",
-  //     number: "1",
-  //   },
-  //   {
-  //     size: "2000",
-  //     price: "₹ 5000",
-  //     number: "4",
-  //   },
-  //   {
-  //     size: "3000",
-  //     price: "₹ 5000",
-  //     number: "6",
-  //   },
-  //   {
-  //     size: "5000",
-  //     price: "₹ 5000",
-  //     number: "10",
-  //   },
-  //   {
-  //     size: "10000",
-  //     price: "₹ 5000",
-  //     number: "20",
-  //   },
-  //   {
-  //     size: "15000",
-  //     price: "₹ 5000",
-  //     number: "30",
-  //   },
-  //   {
-  //     size: "20000",
-  //     price: "₹ 5000",
-  //     number: "40",
-  //   },
-  // ];
   return (
     <div className="flex max-md:max-w-full mb-[72px] gap-5">
       <div className="grid sm:grid-cols-2 w-full h-fit gap-4">
@@ -165,14 +127,14 @@ export default function Quantity() {
                     aria-label={ele.size}
                     classNames={{
                       base: cn(
-                        "flex px-5 h-[86px] max-w-full w-full m-0",
+                        "flex px-5 max-w-full w-full m-0",
                         "hover:bg-content2 items-baseline justify-start",
-                        "cursor-pointer gap-2 p-2 last:border-none border-b-2 last:rounded-b-xl"
+                        "cursor-pointer gap-2 p-2 sm:p-5 last:border-none border-b-2 last:rounded-b-xl"
                       ),
                       icon: "rounded-full",
                       label: "w-full last:rounded-b-xl",
                     }}
-                    value={ele.quantity_id}
+                    value={ele}
                   >
                     <div className="w-full flex justify-between text-[#03172B] gap-2">
                       <div className="flex flex-col justify-evenly items-center">
@@ -239,7 +201,7 @@ export default function Quantity() {
         </div>
         <Link
           isDisabled={groupSelected.length === 0}
-          href={`material?quantity_id=${groupSelected[0]}`}
+          href={`material?quantity_id=${groupSelected[0]?.packaging_type_size_quantity_id}`}
           className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
         >
           Confirm

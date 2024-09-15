@@ -6,17 +6,15 @@ import {
   CheckboxGroup,
   Chip,
   cn,
+  Image,
   Link,
 } from "@nextui-org/react";
-import Image from "next/image";
 import { LuCheck } from "react-icons/lu";
 import axios from "axios";
-import ResourcesContext from "@/context/ResourcesProvider";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Size() {
-  const { resources, setResources } = useContext(ResourcesContext);
   const [groupSelected, setGroupSelected] = useState([]);
   const [sizes, setSizes] = useState([]);
 
@@ -35,50 +33,19 @@ export default function Size() {
             size: ele.sizeId.name,
             dimension: ele.sizeId.dimensions,
             product: "coffee",
+            image: ele.sizeId.size_image_link,
             weight: ele.sizeId.filling_volume,
             packaging_type_size_id: ele.packaging_type_size_id,
             size_id: ele.sizeId.size_id,
           };
         });
+        setGroupSelected([responseData[0]]);
         setSizes(responseData);
       }
     } catch (error) {
       console.error(error.response ? error.response.data : error.message);
     }
   }
-
-  // const sizeList = [
-  //   {
-  //     size: "XS",
-  //     dimension: "170 x 110 x 70 mm",
-  //     product: "coffee",
-  //     weight: "250 g",
-  //   },
-  //   {
-  //     size: "S",
-  //     dimension: "210 x 130 x 80 mm",
-  //     product: "coffee",
-  //     weight: "250 g",
-  //   },
-  //   {
-  //     size: "M",
-  //     dimension: "240 x 160 x 90 mm",
-  //     product: "coffee",
-  //     weight: "250 g",
-  //   },
-  //   {
-  //     size: "L",
-  //     dimension: "265 x 190 x 110 mm",
-  //     product: "coffee",
-  //     weight: "250 g",
-  //   },
-  //   {
-  //     size: "XL",
-  //     dimension: "310 x 250 x 110 mm",
-  //     product: "coffee",
-  //     weight: "250 g",
-  //   },
-  // ];
 
   return (
     <div className="flex max-md:w-full mb-[100px] gap-5">
@@ -170,7 +137,7 @@ export default function Size() {
                         icon: "rounded-full",
                         label: "max-xs:rounded-xl w-full",
                       }}
-                      value={ele.size_id}
+                      value={ele}
                     >
                       <div className="w-full flex justify-between text-[#03172B] gap-2">
                         <div className="flex justify-evenly items-center gap-4">
@@ -203,7 +170,12 @@ export default function Size() {
             </div>
           </div>
           <div className="max-xs:hidden h-auto border-2 flex justify-center items-center rounded-xl">
-            <Image src={"/size.png"} alt="size" width={350} height={350} />
+            <Image
+              src={groupSelected.length ? groupSelected[0].image : "/size.png"}
+              alt="size"
+              width={350}
+              height={350}
+            />
           </div>
         </div>
       </div>
@@ -228,7 +200,7 @@ export default function Size() {
         </div>
         <Link
           isDisabled={groupSelected.length === 0}
-          href={`quantity?size_id=${groupSelected[0]}`}
+          href={`quantity?size_id=${groupSelected[0]?.packaging_type_size_id}`}
           className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
         >
           Confirm

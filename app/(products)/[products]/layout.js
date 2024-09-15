@@ -5,7 +5,6 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import NavDetails from "@/components/NavDetails";
 import { Button, Link } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
-import { ResourcesProvider } from "@/context/ResourcesProvider";
 
 export default function Layout({ children }) {
   const content = {
@@ -72,7 +71,7 @@ export default function Layout({ children }) {
           <NavDetails content={content} />
         </div>
         <div className="flex flex-col flex-grow justify-between">
-          <ResourcesProvider>{children}</ResourcesProvider>
+          {children}
           <div className="ml:hidden fixed bg-white left-0 bottom-0 border flex items-center justify-between w-full px-[30px] py-[14px]">
             <div className="flex flex-col items-start leading-[16px] justify-start">
               <div>Price</div>

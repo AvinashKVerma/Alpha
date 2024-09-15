@@ -37,7 +37,6 @@ export default function Material() {
             updatedAt: "2024-09-10T09:39:19.000Z",
           };
         });
-        console.log(response.data.data);
         setMaterials(responseData);
       }
     } catch (error) {
@@ -60,7 +59,6 @@ export default function Material() {
     },
   ];
 
-  console.log(materials);
   const handleSelect = (index) => {
     setSelectedMaterial(index); // Update the selected material
   };

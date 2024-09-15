@@ -1,6 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from "react";
-import { Pouch } from "@/components/Pouch";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardBody,
@@ -11,7 +10,6 @@ import {
 } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import axios from "axios";
-import ResourcesContext from "@/context/ResourcesProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,45 +18,7 @@ const poppins = Poppins({
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export default function ProductsDetails() {
-  const { resources, setResources } = useContext(ResourcesContext);
-  const productList = [
-    {
-      icon: <Pouch color="#4293B7" fill="#ebedf5" />,
-      description:
-        "Our flat bottom pouches are particularly durable and resistant. Because of the integrated aroma valve,  these pouches are the best fit for coffee products.",
-      name: "Flat Bottom Pouch",
-      time: "4-7 weeks",
-      price: "₹ 0.930",
-      quantity: 500,
-    },
-    {
-      icon: <Pouch color="#4293B7" fill="#ebedf5" />,
-      description:
-        "Our flat bottom pouches are particularly durable and resistant. Because of the integrated aroma valve,  these pouches are the best fit for coffee products.",
-      name: "Stand-up Pouch | Doypack",
-      time: "4-7 weeks",
-      price: "₹ 0.930",
-      quantity: "500",
-    },
-    {
-      icon: <Pouch color="#4293B7" fill="#ebedf5" />,
-      description:
-        "Our flat bottom pouches are particularly durable and resistant. Because of the integrated aroma valve,  these pouches are the best fit for coffee products.",
-      name: "Three Side Seal Pouch",
-      time: "4-7 weeks",
-      price: "₹ 0.930",
-      quantity: 500,
-    },
-    {
-      icon: <Pouch color="#4293B7" fill="#ebedf5" />,
-      description:
-        "Our flat bottom pouches are particularly durable and resistant. Because of the integrated aroma valve,  these pouches are the best fit for coffee products.",
-      name: "Center Seal",
-      time: "4-7 weeks",
-      price: "₹ 0.930",
-      quantity: 500,
-    },
-  ];
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     getPackagingType();
@@ -69,7 +29,23 @@ export default function ProductsDetails() {
       const response = await axios.get(
         `${baseUrl}/api/v1/resources/packaging-type`
       );
-      console.log(response.data); // Log the response
+      if (response.status === 200) {
+        const responseData = response.data.data.map((ele) => {
+          console.log(ele);
+          return {
+            packaging_id: ele.packaging_id,
+            icon: ele.packaging_image_icon_url,
+            description: ele.description,
+            name: ele.name,
+            time: "4-7 weeks",
+            minimum_qty: ele.minimum_qty,
+            price: "₹ 0.930",
+            packaging_image_url: ele.packaging_image_url,
+            quantity: ele.minimum_qty,
+          };
+        });
+        setProductList(responseData);
+      }
     } catch (error) {
       console.error(error.response ? error.response.data : error.message);
     }
@@ -87,11 +63,13 @@ export default function ProductsDetails() {
           >
             <Card
               shadow="sm"
-              className="broder-[#E45971] p-4 max-h-[394px] scrollbar-hide overflow-y-scroll"
+              className="broder-[#E45971] p-4 h-full w-full max-h-[394px] scrollbar-hide overflow-y-scroll"
             >
               <CardBody className="p-0">
                 <div className="flex gap-5 items-start pt-2 mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">
-                  <div className="w-20 aspect-square">{item.icon}</div>
+                  <div className="w-20 aspect-square">
+                    <Image src={item.icon} alt="size" width={80} height={80} />
+                  </div>
                   <div className="flex flex-col gap-5 max-mobile:gap-[6px]">
                     <div className="mobile:text-xl text-base font-semibold mobile:text-center">
                       {item.name}
