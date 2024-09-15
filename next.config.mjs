@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "packiro.com",
         port: "",
-        pathname: "",
+        pathname: "/**", // This allows all paths on packiro.com
       },
     ],
   },
