@@ -21,13 +21,7 @@ export const CartSlice = createSlice({
       state.item = { ...state.item, ...action.payload };
     },
     clearCart: (state) => {
-      state.item = {
-        // Reset fields to empty values instead of empty object
-        packagingType: "",
-        size: "",
-        weight: "",
-        material: "",
-      };
+      state.item = {};
     },
   },
 });

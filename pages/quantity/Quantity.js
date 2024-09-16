@@ -1,16 +1,32 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Image, CheckboxGroup, Link, Checkbox, cn } from "@nextui-org/react";
+import {
+  Image,
+  CheckboxGroup,
+  Link,
+  Checkbox,
+  cn,
+  Button,
+} from "@nextui-org/react";
 import { LuCheck } from "react-icons/lu";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { useRouter } from "next/navigation";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Quantity() {
   const [groupSelected, setGroupSelected] = useState([]);
   const [quantities, setQuantities] = useState([]);
-
+  const dispatch = useAppDispatch();
+  const cartItem = useAppSelector((state) => state?.cart?.item);
+  const router = useRouter();
   useEffect(() => {
+    if (!cartItem.size_id) {
+      router.back();
+    }
     getSizes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getSizes() {
@@ -44,9 +60,21 @@ export default function Quantity() {
             <CheckboxGroup
               value={groupSelected}
               onChange={(e) => {
-                // Store only the last selected checkbox
                 const lastSelected = e[e.length - 1];
-                setGroupSelected([lastSelected]); // Update state with the last selected value
+                dispatch(
+                  addToCart({
+                    ...cartItem,
+                    quantity_id: lastSelected?.quantity_id
+                      ? lastSelected.quantity_id
+                      : "",
+                    quantity: lastSelected?.size ? lastSelected.size : "",
+                    design_number: lastSelected?.number
+                      ? lastSelected.number
+                      : "",
+                    price: lastSelected?.price ? lastSelected.price : "",
+                  })
+                );
+                setGroupSelected([lastSelected]);
               }}
               classNames={{
                 base: "w-full w-max-full",
@@ -204,6 +232,20 @@ export default function Quantity() {
           className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
         >
           Confirm
+        </Link>
+      </div>
+      <div className="ml:hidden fixed bg-white left-0 bottom-0 border flex items-center justify-between w-full px-[30px] py-[14px]">
+        <div className="flex flex-col items-start leading-[16px] justify-start">
+          {/* <div>Price</div>
+          <div>₹470 - ₹930</div> */}
+        </div>
+        <Link
+          isDisabled={groupSelected.length === 0}
+          href={`material?quantity_id=${groupSelected[0]?.packaging_type_size_quantity_id}`}
+        >
+          <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
+            Confirm
+          </Button>
         </Link>
       </div>
     </div>

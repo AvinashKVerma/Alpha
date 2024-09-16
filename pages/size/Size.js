@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   Checkbox,
   CheckboxGroup,
   Chip,
@@ -10,6 +11,9 @@ import {
 } from "@nextui-org/react";
 import { LuCheck } from "react-icons/lu";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { useRouter } from "next/navigation";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -17,8 +21,15 @@ export default function Size() {
   const [groupSelected, setGroupSelected] = useState([]);
   const [sizes, setSizes] = useState([]);
 
+  const dispatch = useAppDispatch();
+  const cartItem = useAppSelector((state) => state?.cart?.item);
+  const router = useRouter();
   useEffect(() => {
+    if (!cartItem.packaging_id) {
+      router.back();
+    }
     getSizes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getSizes() {
@@ -38,7 +49,7 @@ export default function Size() {
             size_id: ele.sizeId.size_id,
           };
         });
-        setGroupSelected([responseData[0]]);
+        // setGroupSelected([responseData[0]]);
         setSizes(responseData);
       }
     } catch (error) {
@@ -66,6 +77,15 @@ export default function Size() {
                 value={groupSelected}
                 onChange={(e) => {
                   const lastSelected = e[e.length - 1];
+                  dispatch(
+                    addToCart({
+                      ...cartItem,
+                      size: lastSelected.size,
+                      dimension: lastSelected.dimension,
+                      size_id: lastSelected.size_id,
+                      weight: lastSelected.weight,
+                    })
+                  );
                   setGroupSelected([lastSelected]);
                 }}
                 classNames={{
@@ -203,6 +223,20 @@ export default function Size() {
           className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
         >
           Confirm
+        </Link>
+      </div>
+      <div className="ml:hidden fixed bg-white left-0 bottom-0 border flex items-center justify-between w-full px-[30px] py-[14px]">
+        <div className="flex flex-col items-start leading-[16px] justify-start">
+          {/* <div>Price</div>
+          <div>₹470 - ₹930</div> */}
+        </div>
+        <Link
+          isDisabled={groupSelected.length === 0}
+          href={`quantity?size_id=${groupSelected[0]?.packaging_type_size_id}`}
+        >
+          <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
+            Confirm
+          </Button>
         </Link>
       </div>
     </div>

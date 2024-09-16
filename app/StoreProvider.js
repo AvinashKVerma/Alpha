@@ -1,5 +1,5 @@
 "use client";
-import { makeStore } from "@/lib/Store";
+import { makeStore } from "@/redux/Store";
 import { useRef } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -14,9 +14,6 @@ export default function StoreProvider({ children }) {
       <PersistGate
         loading={null}
         persistor={persistorRef.current} // Use the correct persistor
-        onBeforeLift={() => {
-          console.log("Redux Persist has loaded the state");
-        }}
       >
         {children}
       </PersistGate>

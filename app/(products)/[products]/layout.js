@@ -72,23 +72,6 @@ export default function Layout({ children }) {
         </div>
         <div className="flex flex-col flex-grow justify-between">
           {children}
-          <div className="ml:hidden fixed bg-white left-0 bottom-0 border flex items-center justify-between w-full px-[30px] py-[14px]">
-            <div className="flex flex-col items-start leading-[16px] justify-start">
-              <div>Price</div>
-              <div>₹470 - ₹930</div>
-            </div>
-            <Link
-              href={
-                pageOrder[currentIndex + 1]
-                  ? `${pageOrder[currentIndex + 1]}`
-                  : "/cart"
-              }
-            >
-              <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
-                Confirm
-              </Button>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

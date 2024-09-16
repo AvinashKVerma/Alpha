@@ -4,8 +4,8 @@ import { Card, CardBody, CardFooter, Divider, Link } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import axios from "axios";
 import Image from "next/image";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { addToCart, clearCart } from "@/lib/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToCart, clearCart } from "@/redux/features/cart/cartSlice";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -19,10 +19,11 @@ export default function ProductsDetails() {
   const dispatch = useAppDispatch();
   const cartItem = useAppSelector((state) => state?.cart?.item);
 
-  console.log(cartItem);
+  if (!cartItem.packaging_id) <div>Loading....</div>;
+
   useEffect(() => {
     getPackagingType();
-    // dispatch(clearCart());
+    dispatch(clearCart());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,7 +63,13 @@ export default function ProductsDetails() {
             className="max-h-[394px]"
             href={`/${item.name.toLocaleLowerCase().replace(" ", "-")}/size`}
             onClick={() => {
-              dispatch(addToCart(item));
+              dispatch(
+                addToCart({
+                  packaging_id: item.packaging_id,
+                  name: item.name,
+                  image: item.packaging_image_url,
+                })
+              );
             }}
           >
             <Card

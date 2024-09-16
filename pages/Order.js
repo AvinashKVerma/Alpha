@@ -1,8 +1,11 @@
+"use client";
+import { useAppSelector } from "@/redux/hooks";
 import { Image } from "@nextui-org/react";
 import React from "react";
 import { IoCheckmark } from "react-icons/io5";
 
 export default function Order() {
+  const cartItem = useAppSelector((state) => state?.cart?.item);
   return (
     <div className="flex flex-col items-center max-mobile:my-10 mobile:p-10">
       <div className="flex justify-center items-center mb-6">
@@ -44,7 +47,7 @@ export default function Order() {
             Packaging type
           </span>
           <span className="text-gray-700 max-mobile:text-black max-mobile:text-sm max-mobile:font-medium">
-            : Flat Bottom Pouch
+            : {cartItem.name}
           </span>
 
           <IoCheckmark className="self-center" />
@@ -52,7 +55,7 @@ export default function Order() {
             Size
           </span>
           <span className="text-gray-700 max-mobile:text-black max-mobile:text-sm max-mobile:font-medium">
-            : L (265 x 190 x 110 mm)
+            : {`${cartItem.size} (${cartItem.dimension})`}
           </span>
 
           <IoCheckmark className="self-center" />
@@ -60,7 +63,7 @@ export default function Order() {
             Quantity
           </span>
           <span className="text-gray-700 max-mobile:text-black max-mobile:text-sm max-mobile:font-medium">
-            : 2000
+            : {cartItem.quantity}
           </span>
 
           <IoCheckmark className="self-center" />
@@ -68,7 +71,7 @@ export default function Order() {
             Design
           </span>
           <span className="text-gray-700 max-mobile:text-black max-mobile:text-sm max-mobile:font-medium">
-            : Added 3 design
+            : {cartItem.design_number}
           </span>
 
           <IoCheckmark className="self-center" />
@@ -76,7 +79,7 @@ export default function Order() {
             Material
           </span>
           <span className="text-gray-700 max-mobile:text-black max-mobile:text-sm max-mobile:font-medium">
-            : Matte look
+            : {cartItem.material}
           </span>
         </div>
       </div>
