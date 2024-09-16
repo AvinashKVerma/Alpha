@@ -4,7 +4,8 @@ import { Card, CardBody, CardFooter, Divider, Link } from "@nextui-org/react";
 import { Poppins } from "next/font/google";
 import axios from "axios";
 import Image from "next/image";
-import { useAppSelector } from "@/lib/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { addToCart, clearCart } from "@/lib/features/cart/cartSlice";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,12 +15,15 @@ const poppins = Poppins({
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export default function ProductsDetails() {
   const [productList, setProductList] = useState([]);
-  const cartItem = useAppSelector((state) => state.cart.item);
+
+  const dispatch = useAppDispatch();
+  const cartItem = useAppSelector((state) => state?.cart?.item);
 
   console.log(cartItem);
-
   useEffect(() => {
     getPackagingType();
+    // dispatch(clearCart());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getPackagingType() {
@@ -57,6 +61,9 @@ export default function ProductsDetails() {
             key={index}
             className="max-h-[394px]"
             href={`/${item.name.toLocaleLowerCase().replace(" ", "-")}/size`}
+            onClick={() => {
+              dispatch(addToCart(item));
+            }}
           >
             <Card
               shadow="sm"
@@ -64,13 +71,17 @@ export default function ProductsDetails() {
             >
               <CardBody className="p-0">
                 <div className="flex gap-5 items-start pt-2 mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">
-                  <Image
-                    src={item.icon}
-                    className="min-w-20"
-                    alt="size"
-                    width={80}
-                    height={80}
-                  />
+                  {item.icon ? (
+                    <Image
+                      src={item.icon}
+                      className="min-w-20"
+                      alt="size"
+                      width={80}
+                      height={80}
+                    />
+                  ) : (
+                    ""
+                  )}
                   <div className="flex flex-col gap-5 max-mobile:gap-[6px]">
                     <div className="mobile:text-xl text-base font-semibold mobile:text-center">
                       {item.name}

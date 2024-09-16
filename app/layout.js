@@ -1,7 +1,6 @@
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import MobileNav from "@/components/MobileNav";
-import StoreProvider from "./StoreProvider";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -21,7 +20,7 @@ export default function RootLayout({ children }) {
             <MobileNav />
           </div>
           <div className="max-w-[1344px] scrollbar-hide flex justify-center flex-grow w-full">
-            <StoreProvider>{children}</StoreProvider>
+            {children}
           </div>
         </div>
       </body>

@@ -1,7 +1,6 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
-import { Button, CheckboxGroup, Link, Checkbox, cn } from "@nextui-org/react";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { Image, CheckboxGroup, Link, Checkbox, cn } from "@nextui-org/react";
 import { LuCheck } from "react-icons/lu";
 import axios from "axios";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
