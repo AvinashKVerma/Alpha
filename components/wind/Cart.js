@@ -105,8 +105,6 @@ export default function Cart() {
     }
   }
 
-  console.log(cartItem);
-
   return (
     <>
       <div className="mb-[66px] flex max-lg:flex-col gap-6 mobile:mt-10">
@@ -303,6 +301,14 @@ export default function Cart() {
             <Link className="w-full max-mobile:hidden" href="/order">
               <Button
                 onClick={hanleSubmit}
+                isDisabled={
+                  !cartItem.packaging_id ||
+                  !cartItem.design_number ||
+                  !cartItem.name ||
+                  !cartItem.material_id ||
+                  !cartItem.size_id ||
+                  !cartItem.quantity_id
+                }
                 className="text-lg w-full font-bold bg-[#253670] text-white h-14"
               >
                 Confirm
