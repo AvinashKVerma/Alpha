@@ -1,4 +1,4 @@
-import ProductsDetails from "@/wind/PackagingType";
+import ProductsDetails from "@/components/wind/PackagingType";
 import React from "react";
 
 export default function page() {
