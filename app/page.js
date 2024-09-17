@@ -1,5 +1,5 @@
 import HomepageNavbar from "@/components/Navbar";
-import HomePage from "@/pages/home/Home";
+import HomePage from "@/wind/home/Home";
 import Image from "next/image";
 
 export default function Home() {

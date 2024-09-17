@@ -1,4 +1,4 @@
-import Quantity from "@/pages/quantity/Quantity";
+import Quantity from "@/wind/quantity/Quantity";
 import React from "react";
 
 export default function page() {

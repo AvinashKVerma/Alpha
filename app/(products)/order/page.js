@@ -1,4 +1,4 @@
-import Order from "@/pages/Order";
+import Order from "@/wind/Order";
 import React from "react";
 
 export default function page() {

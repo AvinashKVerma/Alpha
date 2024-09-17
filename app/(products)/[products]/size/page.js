@@ -1,4 +1,4 @@
-import Size from "@/pages/size/Size";
+import Size from "@/wind/size/Size";
 import React from "react";
 
 export default function page() {
