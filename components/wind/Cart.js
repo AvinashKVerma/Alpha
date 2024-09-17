@@ -81,14 +81,22 @@ export default function Cart() {
     }
   }
 
+  console.log(cartItem);
   async function hanleSubmit() {
     const payload = {
-      quantity: value.quantity,
+      // quantity: value.quantity,
+      // price: cartItem.price,
+      // design_number: cartItem.design_number,
+      user_id,
+      packaging_id: cartItem.packaging_id,
+      size_id: cartItem.size_id,
+      quantity_id: cartItem.quantity_id,
+      material_id: cartItem.material_id,
+      payment_status_id,
       price: cartItem.price,
-      design_number: cartItem.design_number,
     };
     const response = await axios.post(
-      `${baseUrl}/api/v1/resources/create-quantity`,
+      `${baseUrl}/api/v1/resources/create-order`,
       payload
     );
     if (response.status === 200) {
@@ -293,7 +301,10 @@ export default function Cart() {
               </div>
             </div>
             <Link className="w-full max-mobile:hidden" href="/order">
-              <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
+              <Button
+                onClick={hanleSubmit}
+                className="text-lg w-full font-bold bg-[#253670] text-white h-14"
+              >
                 Confirm
               </Button>
             </Link>
