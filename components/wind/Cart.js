@@ -41,16 +41,24 @@ export default function Cart() {
 
   useEffect(() => {
     getSizes();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     setValue({
       quantity: cartItem?.packaging_type_size_quantity_id?.toString(),
-      size: `Size : ${cartItem.size}`,
+      size: cartItem?.packaging_type_size_id?.toString(),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItem]);
+
+  useEffect(() => {
+    if (value?.size) {
+      getQuantities();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value.size]);
 
   async function getSizes() {
     try {
@@ -59,20 +67,31 @@ export default function Cart() {
       );
       if (sizeResponse.data.status === 200) {
         const sizeArray = sizeResponse.data.data.map((ele) => {
-          return `Size : ${ele.sizeId.name}`;
+          return {
+            packaging_type_size_id: ele.packaging_type_size_id,
+            size: `Size : ${ele.sizeId.name}`,
+          };
         });
         setConstant((prevData) => ({
           ...prevData,
           size: sizeArray,
         }));
       }
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+    }
+  }
+
+  async function getQuantities() {
+    try {
       const quantityResponse = await axios.get(
-        `${baseUrl}/api/v1/resources/list-packaging-type-size-quantity/${cartItem.packaging_type_size_id}`
+        `${baseUrl}/api/v1/resources/list-packaging-type-size-quantity/${value.size}`
       );
       if (quantityResponse.data.status === 200) {
         const quantityArray = quantityResponse.data.data.map((ele) => {
           return {
             quantity: `Quantity:${ele.quantityId.quantity}`,
+            price: ele.quantityId.price,
             packaging_type_size_quantity_id:
               ele.packaging_type_size_quantity_id,
           };
@@ -87,26 +106,22 @@ export default function Cart() {
     }
   }
 
-  async function hanleSubmit() {
+  async function hanleSave() {
     const payload = {
-      // quantity: value.quantity,
-      // price: cartItem.price,
-      // design_number: cartItem.design_number,
       user_id: "c0a6b80a-7a24-431b-99b7-793d71af4b4b-1725961556841",
       packaging_id: cartItem.packaging_id,
       size_id: cartItem.size_id,
       quantity_id: cartItem.quantity_id,
       material_id: cartItem.material_id,
-      payment_status_id: 2,
+      payment_status_id: 1,
       price: cartItem.price,
     };
     const response = await axios.post(
-      `${baseUrl}/api/v1/resources/create-order`,
+      `${baseUrl}/api/v1/order/create-order`,
       payload
     );
     if (response.status === 200) {
       router.push("/order");
-      dispatch(clearCart());
     }
   }
 
@@ -153,19 +168,47 @@ export default function Cart() {
                       </span>
                       <span className="sm:hidden flex items-center gap-[6px]">
                         <span className="text-base font-semibold">
-                          ₹ {cartItem.price}
+                          ₹{" "}
+                          {(constants?.quantity &&
+                            constants?.quantity?.find(
+                              (ele) =>
+                                ele.packaging_type_size_quantity_id.toString() ===
+                                value.quantity.toString()
+                            )?.price) ||
+                            0}
                         </span>
                         <span className="text-xs line-through">
-                          ₹ {cartItem.price}
+                          ₹{" "}
+                          {(constants?.quantity &&
+                            constants?.quantity?.find(
+                              (ele) =>
+                                ele.packaging_type_size_quantity_id.toString() ===
+                                value.quantity.toString()
+                            )?.price) ||
+                            0}
                         </span>
                       </span>
                     </div>
                     <div className="max-sm:hidden min-w-fit flex flex-col gap-2">
                       <span className="text-lg font-medium">
-                        ₹ {cartItem.price}
+                        ₹{" "}
+                        {(constants?.quantity &&
+                          constants?.quantity?.find(
+                            (ele) =>
+                              ele.packaging_type_size_quantity_id.toString() ===
+                              value.quantity.toString()
+                          )?.price) ||
+                          0}
                       </span>
                       <span className="flex gap-3 line-through text-[#9FA9B3]">
-                        ₹ {cartItem.price}
+                        ₹{" "}
+                        {(constants?.quantity &&
+                          constants?.quantity?.find(
+                            (ele) =>
+                              ele.packaging_type_size_quantity_id.toString() ===
+                              value.quantity.toString()
+                          )?.price) ||
+                          0}
                       </span>
                     </div>
                   </div>
@@ -244,9 +287,9 @@ export default function Cart() {
                                   selectedIcon: "hidden",
                                   value: "text-xs p-0",
                                 }}
-                                key={ele}
+                                key={ele.packaging_type_size_id}
                               >
-                                {ele}
+                                {ele.size}
                               </SelectItem>
                             ))}
                         </Select>
@@ -282,53 +325,116 @@ export default function Cart() {
               <div className="flex flex-col justify-between w-full gap-5">
                 <span className="flex justify-between w-full">
                   <span className="text-[#03172B96]">Total MRP</span>
-                  <span>₹ {cartItem.price}</span>
+                  <span>
+                    ₹{" "}
+                    {(constants?.quantity &&
+                      constants?.quantity?.find(
+                        (ele) =>
+                          ele.packaging_type_size_quantity_id.toString() ===
+                          value.quantity.toString()
+                      )?.price) ||
+                      0}
+                  </span>
                 </span>
                 <span className="flex justify-between w-full">
                   <span className="text-[#03172B96]">Price per item</span>
                   <span>
                     ₹{" "}
-                    {parseFloat(cartItem.price) / parseFloat(cartItem.quantity)}
+                    {(
+                      parseFloat(
+                        constants?.quantity &&
+                          (constants?.quantity?.find(
+                            (ele) =>
+                              ele.packaging_type_size_quantity_id?.toString() ===
+                              value?.quantity?.toString()
+                          )?.price ??
+                            0) // Wrap the nullish coalescing in parentheses
+                      ) / parseFloat(cartItem?.quantity ?? 1)
+                    ) // Default quantity to 1 if it's undefined
+                      .toFixed(2)}
                   </span>
                 </span>
                 <span className="flex justify-between w-full">
                   <span className="text-[#03172B96]">Discount on MRP</span>
-                  <span className="text-[#1CC618]">- ₹ 549</span>
+                  <span className="text-[#1CC618]">
+                    - ₹{" "}
+                    {constants?.quantity &&
+                    constants?.quantity?.find(
+                      (ele) =>
+                        ele.packaging_type_size_quantity_id.toString() ===
+                        value.quantity.toString()
+                    )?.price
+                      ? 549
+                      : 0}
+                  </span>
                 </span>
                 <span className="flex justify-between w-full">
                   <span className="text-[#03172B96]">Delivery fee</span>
-                  <span>₹ 50</span>
+                  <span>
+                    ₹{" "}
+                    {constants?.quantity &&
+                    constants?.quantity?.find(
+                      (ele) =>
+                        ele.packaging_type_size_quantity_id.toString() ===
+                        value.quantity.toString()
+                    )?.price
+                      ? 50
+                      : 0}
+                  </span>
                 </span>
                 <Divider />
                 <span className="flex justify-between font-bold">
                   <span>Total</span>
-                  <span>₹ {parseFloat(cartItem.price) - 549 + 50}</span>
+                  <span>
+                    ₹{" "}
+                    {((constants?.quantity &&
+                      constants?.quantity?.find(
+                        (ele) =>
+                          ele.packaging_type_size_quantity_id.toString() ===
+                          value.quantity.toString()
+                      )?.price) ||
+                      0) -
+                      (constants?.quantity &&
+                      constants?.quantity?.find(
+                        (ele) =>
+                          ele.packaging_type_size_quantity_id.toString() ===
+                          value.quantity.toString()
+                      )?.price
+                        ? 549
+                        : 0) +
+                      (constants?.quantity &&
+                      constants?.quantity?.find(
+                        (ele) =>
+                          ele.packaging_type_size_quantity_id.toString() ===
+                          value.quantity.toString()
+                      )?.price
+                        ? 50
+                        : 0)}
+                  </span>
                 </span>
               </div>
             </div>
-            <Link className="w-full max-mobile:hidden" href="/order">
-              <Button
-                onClick={hanleSubmit}
-                isDisabled={
-                  !cartItem.packaging_id ||
-                  !cartItem.design_number ||
-                  !cartItem.name ||
-                  !cartItem.material_id ||
-                  !cartItem.size_id ||
-                  !cartItem.quantity_id
-                }
-                className="text-lg w-full font-bold bg-[#253670] text-white h-14"
-              >
-                Confirm
-              </Button>
-            </Link>
+            <Button
+              onClick={() => hanleSave()}
+              isDisabled={
+                !cartItem.packaging_id ||
+                !cartItem.design_number ||
+                !cartItem.name ||
+                !cartItem.material_id ||
+                !cartItem.size_id ||
+                !cartItem.quantity_id
+              }
+              className="text-lg w-full font-bold bg-[#253670] text-white max-mobile:hidden h-14"
+            >
+              Confirm
+            </Button>
           </div>
         ) : null}
       </div>
       <div className="mobile:hidden fixed bg-white left-0 bottom-0 flex items-center justify-between w-full px-[30px] py-[14px]">
         <div>Price</div>
         <Button
-          onClick={hanleSubmit}
+          onClick={() => hanleSave()}
           isDisabled={
             !cartItem.packaging_id ||
             !cartItem.design_number ||
