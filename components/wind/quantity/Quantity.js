@@ -250,10 +250,10 @@ export default function Quantity() {
           Confirm
         </Link>
       </div>
-      <div className="ml:hidden fixed bg-white left-0 bottom-0 border flex items-center justify-between w-full px-[30px] py-[14px]">
-        <div className="flex flex-col items-start leading-[16px] justify-start">
-          {/* <div>Price</div>
-          <div>₹470 - ₹930</div> */}
+      <div className="ml:hidden z-50 fixed bg-white left-0 bottom-0 border flex items-center md:justify-end justify-between w-full px-[30px] py-[14px]">
+        <div className="flex flex-col md:hidden text-xs items-start leading-[16px] justify-start">
+          <div className="text-[#03172B80]">Price</div>
+          <div className="font-semibold">₹ {cartItem.price || 0}</div>
         </div>
         <Link isDisabled={!groupSelected[0]} href={`material`}>
           <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">

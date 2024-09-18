@@ -61,7 +61,7 @@ export default function Material() {
       <div
         className={`${poppins.className} flex max-mobile:flex-col h-full justify-between max-mobile:max-w-screen-mobile gap-5 mb-[72px]`}
       >
-        <div className="grid max-mobile:grid-cols-1 mobile:grid-cols-2 w-full ml:w-4/5 gap-5 flex-col h-fit">
+        <div className="grid max-mobile:grid-cols-1 ml:grid-cols-2 w-full ml:w-4/5 gap-5 flex-col h-fit">
           {materials.map((ele, i) => {
             return (
               <div
@@ -149,10 +149,10 @@ export default function Material() {
           </Link>
         </div>
       </div>
-      <div className="ml:hidden z-50 fixed bg-white left-0 bottom-0 border flex items-center justify-between w-full px-[30px] py-[14px]">
-        <div className="flex flex-col items-start leading-[16px] justify-start">
-          {/* <div>Price</div>
-          <div>₹470 - ₹930</div> */}
+      <div className="ml:hidden z-50 fixed bg-white left-0 bottom-0 border flex items-center md:justify-end justify-between w-full px-[30px] py-[14px]">
+        <div className="flex flex-col md:hidden text-xs items-start leading-[16px] justify-start">
+          <div className="text-[#03172B80]">Price</div>
+          <div className="font-semibold">₹ {cartItem.price || 0}</div>
         </div>
         <Link isDisabled={!selectedMaterial} href={`/cart`}>
           <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
