@@ -86,7 +86,7 @@ export default function Size() {
   return (
     <div className="flex max-md:w-full mb-[100px] gap-5">
       <div className="ml:w-4/5 max-ml:w-full flex max-md:flex-col  gap-4">
-        <div className="xs:hidden md:w-auto h-[161px] border-2 flex justify-center items-center rounded-xl overflow-hidden">
+        <div className="xs:hidden md:w-auto h-fit border-2 flex justify-center items-center rounded-xl overflow-hidden">
           <Image
             src={
               hoveredItem?.image
@@ -225,7 +225,7 @@ export default function Size() {
               </CheckboxGroup>
             </div>
           </div>
-          <div className="max-xs:hidden h-auto border-2 flex justify-center items-center rounded-xl">
+          <div className="max-xs:hidden h-fit border-2 flex justify-center items-center rounded-xl">
             <Image
               // src={groupSelected.length ? groupSelected[0].image : "/size.png"}
               src={
