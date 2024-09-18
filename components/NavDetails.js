@@ -44,14 +44,16 @@ export default function NavDetails({ content }) {
           </span>
         </div>
       </div>
-      <div className="max-md:hidden flex items-center gap-3 h-fit">
-        <span className="text-base whitespace-nowrap font-normal">
-          Total Price :{" "}
-        </span>
-        <span className="bg-[#fef2e9] font-semibold text-base text-[#F47A1F] px-2 py-1 whitespace-nowrap rounded-full">
-          ₹ {cartItem.price}
-        </span>
-      </div>
+      {cartItem.price && (
+        <div className="max-md:hidden flex items-center gap-3 h-fit">
+          <span className="text-base whitespace-nowrap font-normal">
+            Total Price :{" "}
+          </span>
+          <span className="bg-[#fef2e9] font-semibold text-base text-[#F47A1F] px-2 py-1 whitespace-nowrap rounded-full">
+            {cartItem.price}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
