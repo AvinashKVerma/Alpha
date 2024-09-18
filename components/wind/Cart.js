@@ -87,12 +87,12 @@ export default function Cart() {
       // quantity: value.quantity,
       // price: cartItem.price,
       // design_number: cartItem.design_number,
-      user_id,
+      user_id: "1",
       packaging_id: cartItem.packaging_id,
       size_id: cartItem.size_id,
       quantity_id: cartItem.quantity_id,
       material_id: cartItem.material_id,
-      payment_status_id,
+      payment_status_id: "",
       price: cartItem.price,
     };
     const response = await axios.post(

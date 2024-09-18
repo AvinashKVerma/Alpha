@@ -38,11 +38,11 @@ export default function Home() {
   }
   return (
     <div className="flex flex-col items-center max-w-[1,291px] max-mobile:px-[30px] lg:gap-[60px] md:gap-8 gap-4 mb-4">
-      <div className="flex flex-col w-full mobile:items-center mobile:justify-start">
-        <div className="text-[10px] text-[#081F3866] mobile:hidden">
+      <div className="flex flex-col w-full xs:items-center sm:justify-start">
+        <div className="text-[10px] mobile:text-xs xs:text-sm text-[#081F3866] xs:hidden">
           All Products
         </div>
-        <h1 className="lg:text-5xl sm:text-3xl text-xl mobile:font-bold max-mobile:text-xs font-medium">
+        <h1 className="lg:text-5xl text-3xl mobile:font-bold max-mobile:text-xs font-medium">
           Packaging type
         </h1>
       </div>
