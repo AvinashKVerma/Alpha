@@ -52,6 +52,8 @@ export default function Quantity() {
     }
   }
 
+  console.log(cartItem);
+
   return (
     <div className="flex max-md:max-w-full mb-[72px] gap-5">
       <div className="grid sm:grid-cols-2 w-full h-fit gap-4">
@@ -199,22 +201,11 @@ export default function Quantity() {
                   );
                 })
               ) : (
-                <Checkbox
-                  aria-label="size"
-                  classNames={{
-                    base: cn(
-                      "flex px-5 max-w-full w-full m-0",
-                      "hover:bg-content2 items-baseline justify-start",
-                      "cursor-pointer gap-2 p-2 sm:p-5 last:border-none border-b-2 last:rounded-b-xl"
-                    ),
-                    icon: "rounded-full hidden",
-                    label: "w-full last:rounded-b-xl",
-                  }}
-                >
+                <label className="group relative tap-highlight-transparent select-none flex max-w-full w-full m-0 hover:bg-content2 items-baseline justify-start cursor-pointer gap-2 p-2 sm:p-5 last:border-none border-b-2 last:rounded-b-xl">
                   <div className="w-full flex justify-center text-[#03172B] gap-2">
                     No Quantity Found
                   </div>
-                </Checkbox>
+                </label>
               )}
             </CheckboxGroup>
           </div>

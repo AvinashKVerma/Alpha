@@ -143,7 +143,7 @@ export default function Cart() {
                         {cartItem.name}
                       </span>
                       <span className="flex mobile:text-sm max-mobile:hidden gap-3 text-[#9FA9B3]">
-                        <span>Design file : Boxdesign.pdf |</span>
+                        {/* <span>Design file : Boxdesign.pdf |</span> */}
                         <span>Material : {cartItem.material}</span>
                       </span>
                       <span className="flex text-xs mobile:hidden gap-3 text-[#9FA9B3]">

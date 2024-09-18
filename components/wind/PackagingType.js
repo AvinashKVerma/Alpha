@@ -69,6 +69,7 @@ export default function ProductsDetails() {
                   packaging_id: item.packaging_id,
                   name: item.name,
                   image: item.packaging_image_url,
+                  price: item.price,
                 })
               );
             }}
