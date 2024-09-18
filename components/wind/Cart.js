@@ -18,8 +18,8 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function Cart() {
   const [value, setValue] = useState({
-    quantity: "Quantity :500",
-    size: "Size : S",
+    quantity: "",
+    size: "",
   });
 
   const dispatch = useAppDispatch();
@@ -41,19 +41,22 @@ export default function Cart() {
 
   useEffect(() => {
     getSizes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     setValue({
-      quantity: `Quantity : ${cartItem.quantity}`,
+      quantity: cartItem?.packaging_type_size_quantity_id?.toString(),
       size: `Size : ${cartItem.size}`,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItem]);
 
+  console.log(value, cartItem, constants);
   async function getSizes() {
     try {
       const sizeResponse = await axios.get(
-        `${baseUrl}/api/v1/resources/list-packaging-type-size/1`
+        `${baseUrl}/api/v1/resources/list-packaging-type-size/${cartItem.packaging_id}`
       );
       if (sizeResponse.data.status === 200) {
         const sizeArray = sizeResponse.data.data.map((ele) => {
@@ -65,11 +68,15 @@ export default function Cart() {
         }));
       }
       const quantityResponse = await axios.get(
-        `${baseUrl}/api/v1/resources/list-packaging-type-size-quantity/1`
+        `${baseUrl}/api/v1/resources/list-packaging-type-size-quantity/${cartItem.packaging_type_size_id}`
       );
       if (quantityResponse.data.status === 200) {
         const quantityArray = quantityResponse.data.data.map((ele) => {
-          return `Quantity : ${ele.quantityId.quantity}`;
+          return {
+            quantity: `Quantity:${ele.quantityId.quantity}`,
+            packaging_type_size_quantity_id:
+              ele.packaging_type_size_quantity_id,
+          };
         });
         setConstant((prevData) => ({
           ...prevData,
@@ -81,7 +88,6 @@ export default function Cart() {
     }
   }
 
-  console.log(cartItem);
   async function hanleSubmit() {
     const payload = {
       // quantity: value.quantity,
@@ -92,7 +98,7 @@ export default function Cart() {
       size_id: cartItem.size_id,
       quantity_id: cartItem.quantity_id,
       material_id: cartItem.material_id,
-      payment_status_id: "",
+      payment_status_id: 5,
       price: cartItem.price,
     };
     const response = await axios.post(
@@ -190,20 +196,25 @@ export default function Cart() {
                             Select
                           </SelectItem>
                           {constants.quantity.length &&
-                            constants.quantity?.map((ele) => (
-                              <SelectItem
-                                classNames={{
-                                  listboxWrapper: "text-xs max-w-fit",
-                                  base: "text-xs",
-                                  title: "text-xs p-0",
-                                  selectedIcon: "hidden",
-                                  value: "text-xs p-0",
-                                }}
-                                key={ele}
-                              >
-                                {ele}
-                              </SelectItem>
-                            ))}
+                            constants?.quantity?.map(
+                              (ele) => (
+                                console.log(ele),
+                                (
+                                  <SelectItem
+                                    classNames={{
+                                      listboxWrapper: "text-xs max-w-fit",
+                                      base: "text-xs",
+                                      title: "text-xs p-0",
+                                      selectedIcon: "hidden",
+                                      value: "text-xs p-0",
+                                    }}
+                                    key={ele.packaging_type_size_quantity_id}
+                                  >
+                                    {ele.quantity}
+                                  </SelectItem>
+                                )
+                              )
+                            )}
                         </Select>
                       </div>
                       <div className="flex w-28 flex-wrap md:flex-nowrap gap-4">
@@ -277,7 +288,7 @@ export default function Cart() {
               <div className="flex flex-col justify-between w-full gap-5">
                 <span className="flex justify-between w-full">
                   <span className="text-[#03172B96]">Total MRP</span>
-                  <span>₹ 1098</span>
+                  <span>₹ {cartItem.price}</span>
                 </span>
                 <span className="flex justify-between w-full">
                   <span className="text-[#03172B96]">Price per item</span>
@@ -294,7 +305,7 @@ export default function Cart() {
                 <Divider />
                 <span className="flex justify-between font-bold">
                   <span>Total</span>
-                  <span>₹ 1023</span>
+                  <span>₹ {cartItem.price}</span>
                 </span>
               </div>
             </div>

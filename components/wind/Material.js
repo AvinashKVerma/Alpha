@@ -115,18 +115,18 @@ export default function Material() {
             <div className="flex items-center gap-2">
               <LuCheck />
               <span> Type :</span>
-              <span className="font-semibold"> Flat bottom pouch</span>
+              <span className="font-semibold"> {cartItem.name}</span>
             </div>
             <div className="flex items-center gap-2">
               <LuCheck />
               <span> Size :</span>
-              <span className="font-semibold">L</span>
-              <span className="">{`(265 x 190 x 110 mm)`}</span>
+              <span className="font-semibold">{cartItem.size}</span>
+              <span className="">{`(${cartItem.dimension})`}</span>
             </div>
             <div className="flex items-center gap-2">
               <LuCheck />
               <span> Quantity :</span>
-              <span className="font-semibold">2000</span>
+              <span className="font-semibold">{cartItem.quantity}</span>
             </div>
           </div>
           <div className="flex flex-col gap-3 min-w-[250px] p-4 bg-[#FDD40A1A] text-sm border-2 rounded-xl">
@@ -140,7 +140,7 @@ export default function Material() {
           </div>
           <Link
             isDisabled={!selectedMaterial}
-            href={`/cart?material_id=${selectedMaterial}`}
+            href={`/cart`}
             className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
           >
             <Button className="text-lg w-full font-bold bg-[#253670] text-white h-14">
@@ -154,10 +154,7 @@ export default function Material() {
           {/* <div>Price</div>
           <div>₹470 - ₹930</div> */}
         </div>
-        <Link
-          isDisabled={!selectedMaterial}
-          href={`/cart?material_id=${selectedMaterial}`}
-        >
+        <Link isDisabled={!selectedMaterial} href={`/cart`}>
           <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
             Confirm
           </Button>

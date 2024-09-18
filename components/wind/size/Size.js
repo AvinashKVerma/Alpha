@@ -37,7 +37,7 @@ export default function Size() {
   async function getSizes() {
     try {
       const response = await axios.get(
-        `${baseUrl}/api/v1/resources/list-packaging-type-size/1`
+        `${baseUrl}/api/v1/resources/list-packaging-type-size/${cartItem.packaging_id}`
       );
       if (response.data.status === 200) {
         const responseData = response.data.data.map((ele) => {
@@ -66,6 +66,7 @@ export default function Size() {
         size: lastSelected.size,
         dimension: lastSelected.dimension,
         size_id: lastSelected.size_id,
+        packaging_type_size_id: lastSelected.packaging_type_size_id,
         weight: lastSelected.weight,
       })
     );
@@ -82,6 +83,7 @@ export default function Size() {
     }, 500);
   };
 
+  console.log(cartItem);
   return (
     <div className="flex max-md:w-full mb-[100px] gap-5">
       <div className="ml:w-4/5 max-ml:w-full flex max-md:flex-col  gap-4">
@@ -240,7 +242,7 @@ export default function Size() {
           <div className="flex flex-wrap min-w-fit items-center gap-2 text-xs sm:text-sm md:text-base">
             <LuCheck className="text-sm" />
             <span>Type :</span>
-            <span className="font-semibold">Flat bottom pouch</span>
+            <span className="font-semibold">{cartItem.name}</span>
           </div>
         </div>
 

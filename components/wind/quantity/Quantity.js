@@ -29,10 +29,11 @@ export default function Quantity() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(groupSelected);
   async function getSizes() {
     try {
       const response = await axios.get(
-        `${baseUrl}/api/v1/resources/list-packaging-type-size-quantity/1`
+        `${baseUrl}/api/v1/resources/list-packaging-type-size-quantity/${cartItem.packaging_type_size_id}`
       );
       if (response.data.status === 200) {
         const responseData = response.data.data.map((ele) => {
@@ -67,6 +68,10 @@ export default function Quantity() {
                     quantity_id: lastSelected?.quantity_id
                       ? lastSelected.quantity_id
                       : "",
+                    packaging_type_size_quantity_id:
+                      lastSelected?.packaging_type_size_quantity_id
+                        ? lastSelected.packaging_type_size_quantity_id
+                        : "",
                     quantity: lastSelected?.size ? lastSelected.size : "",
                     design_number: lastSelected?.number
                       ? lastSelected.number
@@ -147,50 +152,71 @@ export default function Quantity() {
                   </div>
                 </span>
               </label>
-              {quantities.map((ele, i) => {
-                return (
-                  <Checkbox
-                    key={i}
-                    aria-label={ele.size}
-                    classNames={{
-                      base: cn(
-                        "flex px-5 max-w-full w-full m-0",
-                        "hover:bg-content2 items-baseline justify-start",
-                        "cursor-pointer gap-2 p-2 sm:p-5 last:border-none border-b-2 last:rounded-b-xl"
-                      ),
-                      icon: "rounded-full",
-                      label: "w-full last:rounded-b-xl",
-                    }}
-                    value={ele}
-                  >
-                    <div className="w-full flex justify-between text-[#03172B] gap-2">
-                      <div className="flex flex-col justify-evenly items-center">
-                        <div className="flex mobile:flex-col gap-2 justify-start items-start">
-                          <span className="text-lg max-mobile:text-sm font-bold">
-                            {ele.size}
-                          </span>
-                          <span className="px-2 bg-[#1CC6181A] max-mobile:text-xs max-mobile:font-semibold text-[#1CC618] rounded-full">
-                            50% off
+              {quantities.length ? (
+                quantities.map((ele, i) => {
+                  return (
+                    <Checkbox
+                      key={i}
+                      aria-label={ele.size}
+                      classNames={{
+                        base: cn(
+                          "flex px-5 max-w-full w-full m-0",
+                          "hover:bg-content2 items-baseline justify-start",
+                          "cursor-pointer gap-2 p-2 sm:p-5 last:border-none border-b-2 last:rounded-b-xl"
+                        ),
+                        icon: "rounded-full hidden",
+                        label: "w-full last:rounded-b-xl",
+                      }}
+                      value={ele}
+                    >
+                      <div className="w-full flex justify-between text-[#03172B] gap-2">
+                        <div className="flex flex-col justify-evenly items-center">
+                          <div className="flex mobile:flex-col gap-2 justify-start items-start">
+                            <span className="text-lg max-mobile:text-sm font-bold">
+                              {ele.size}
+                            </span>
+                            <span className="px-2 bg-[#1CC6181A] max-mobile:text-xs max-mobile:font-semibold text-[#1CC618] rounded-full">
+                              50% off
+                            </span>
+                          </div>
+                          <span className="text-xs font-medium mobile:hidden w-full">
+                            <span className="text-[#808b98]">
+                              No. of Design:
+                            </span>{" "}
+                            {ele.number}
                           </span>
                         </div>
-                        <span className="text-xs font-medium mobile:hidden w-full">
-                          <span className="text-[#808b98]">No. of Design:</span>{" "}
+                        <div className="flex flex-col">
+                          <span className="text-lg font-medium">
+                            {Math.floor(parseFloat(ele.price))}
+                          </span>
+                          <span className="text-lg text-[#03172B80] font-medium">{`(₹50/piece)`}</span>
+                        </div>
+                        <div className="flex items-center gap-1 max-mobile:hidden">
                           {ele.number}
-                        </span>
+                        </div>
                       </div>
-                      <div className="flex flex-col">
-                        <span className="text-lg font-medium">
-                          {Math.floor(parseFloat(ele.price))}
-                        </span>
-                        <span className="text-lg text-[#03172B80] font-medium">{`(₹50/piece)`}</span>
-                      </div>
-                      <div className="flex items-center gap-1 max-mobile:hidden">
-                        {ele.number}
-                      </div>
-                    </div>
-                  </Checkbox>
-                );
-              })}
+                    </Checkbox>
+                  );
+                })
+              ) : (
+                <Checkbox
+                  aria-label="size"
+                  classNames={{
+                    base: cn(
+                      "flex px-5 max-w-full w-full m-0",
+                      "hover:bg-content2 items-baseline justify-start",
+                      "cursor-pointer gap-2 p-2 sm:p-5 last:border-none border-b-2 last:rounded-b-xl"
+                    ),
+                    icon: "rounded-full hidden",
+                    label: "w-full last:rounded-b-xl",
+                  }}
+                >
+                  <div className="w-full flex justify-center text-[#03172B] gap-2">
+                    No Quantity Found
+                  </div>
+                </Checkbox>
+              )}
             </CheckboxGroup>
           </div>
         </div>
@@ -206,15 +232,15 @@ export default function Quantity() {
               <LuCheck />
               <span> Type :</span>
             </div>
-            <span className="font-semibold"> Flat bottom pouch</span>
+            <span className="font-semibold">{cartItem.name}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2 min-w-fit">
               <LuCheck />
               <span> Size :</span>
             </div>
-            <span className="font-semibold">L</span>
-            <span className="">{`(265 x 190 x 110 mm)`}</span>
+            <span className="font-semibold">{cartItem.size}</span>
+            <span className="">{`(${cartItem.dimension})`}</span>
           </div>
         </div>
         <div className="flex flex-col gap-3 p-4 bg-[#FDD40A1A] min-w-[250px] text-sm border-2 rounded-xl">
@@ -227,8 +253,8 @@ export default function Quantity() {
           </span>
         </div>
         <Link
-          isDisabled={groupSelected.length === 0}
-          href={`material?quantity_id=${groupSelected[0]?.packaging_type_size_quantity_id}`}
+          isDisabled={!groupSelected[0]}
+          href={`material`}
           className="w-full min-w-[250px] flex justify-center items-center rounded-lg text-lg font-bold bg-[#253670] text-white h-14"
         >
           Confirm
@@ -239,10 +265,7 @@ export default function Quantity() {
           {/* <div>Price</div>
           <div>₹470 - ₹930</div> */}
         </div>
-        <Link
-          isDisabled={groupSelected.length === 0}
-          href={`material?quantity_id=${groupSelected[0]?.packaging_type_size_quantity_id}`}
-        >
+        <Link isDisabled={!groupSelected[0]} href={`material`}>
           <Button className="text-xs w-[88px] font-medium bg-[#143761] rounded-md text-white h-[38px]">
             Confirm
           </Button>

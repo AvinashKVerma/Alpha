@@ -52,6 +52,7 @@ export default function ProductsDetails() {
       console.error(error.response ? error.response.data : error.message);
     }
   }
+  console.log(productList);
   return (
     <div
       className={`grid max-sm:grid-cols-1 scrollbar-hide max-ml:grid-cols-2 max-lg:grid-cols-3 lg:grid-cols-4 mb-[72px] gap-4 ${poppins.className}`}
@@ -78,17 +79,14 @@ export default function ProductsDetails() {
             >
               <CardBody className="p-0">
                 <div className="flex gap-5 items-start pt-2 mobile:items-center mobile:flex-col overflow-y-scroll scrollbar-hide">
-                  {item.icon ? (
-                    <Image
-                      src={item.icon}
-                      className="min-w-20"
-                      alt="size"
-                      width={80}
-                      height={80}
-                    />
-                  ) : (
-                    ""
-                  )}
+                  <Image
+                    src={item.icon || "/Frame40.png"}
+                    className="min-w-20"
+                    alt="size"
+                    width={80}
+                    height={80}
+                  />
+
                   <div className="flex flex-col gap-5 max-mobile:gap-[6px]">
                     <div className="mobile:text-xl text-base font-semibold mobile:text-center">
                       {item.name}
