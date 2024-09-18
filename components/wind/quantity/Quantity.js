@@ -29,7 +29,6 @@ export default function Quantity() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(groupSelected);
   async function getSizes() {
     try {
       const response = await axios.get(

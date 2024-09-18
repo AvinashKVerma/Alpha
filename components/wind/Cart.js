@@ -52,7 +52,6 @@ export default function Cart() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartItem]);
 
-  console.log(value, cartItem, constants);
   async function getSizes() {
     try {
       const sizeResponse = await axios.get(
@@ -93,12 +92,12 @@ export default function Cart() {
       // quantity: value.quantity,
       // price: cartItem.price,
       // design_number: cartItem.design_number,
-      user_id: "1",
+      user_id: "c0a6b80a-7a24-431b-99b7-793d71af4b4b-1725961556841",
       packaging_id: cartItem.packaging_id,
       size_id: cartItem.size_id,
       quantity_id: cartItem.quantity_id,
       material_id: cartItem.material_id,
-      payment_status_id: 5,
+      payment_status_id: 2,
       price: cartItem.price,
     };
     const response = await axios.post(
@@ -196,25 +195,20 @@ export default function Cart() {
                             Select
                           </SelectItem>
                           {constants.quantity.length &&
-                            constants?.quantity?.map(
-                              (ele) => (
-                                console.log(ele),
-                                (
-                                  <SelectItem
-                                    classNames={{
-                                      listboxWrapper: "text-xs max-w-fit",
-                                      base: "text-xs",
-                                      title: "text-xs p-0",
-                                      selectedIcon: "hidden",
-                                      value: "text-xs p-0",
-                                    }}
-                                    key={ele.packaging_type_size_quantity_id}
-                                  >
-                                    {ele.quantity}
-                                  </SelectItem>
-                                )
-                              )
-                            )}
+                            constants?.quantity?.map((ele) => (
+                              <SelectItem
+                                classNames={{
+                                  listboxWrapper: "text-xs max-w-fit",
+                                  base: "text-xs",
+                                  title: "text-xs p-0",
+                                  selectedIcon: "hidden",
+                                  value: "text-xs p-0",
+                                }}
+                                key={ele.packaging_type_size_quantity_id}
+                              >
+                                {ele.quantity}
+                              </SelectItem>
+                            ))}
                         </Select>
                       </div>
                       <div className="flex w-28 flex-wrap md:flex-nowrap gap-4">
@@ -292,7 +286,10 @@ export default function Cart() {
                 </span>
                 <span className="flex justify-between w-full">
                   <span className="text-[#03172B96]">Price per item</span>
-                  <span>₹ 23.36</span>
+                  <span>
+                    ₹{" "}
+                    {parseFloat(cartItem.price) / parseFloat(cartItem.quantity)}
+                  </span>
                 </span>
                 <span className="flex justify-between w-full">
                   <span className="text-[#03172B96]">Discount on MRP</span>
@@ -305,7 +302,7 @@ export default function Cart() {
                 <Divider />
                 <span className="flex justify-between font-bold">
                   <span>Total</span>
-                  <span>₹ {cartItem.price}</span>
+                  <span>₹ {parseFloat(cartItem.price) - 549 + 50}</span>
                 </span>
               </div>
             </div>

@@ -52,7 +52,7 @@ export default function ProductsDetails() {
       console.error(error.response ? error.response.data : error.message);
     }
   }
-  console.log(productList);
+
   return (
     <div
       className={`grid max-sm:grid-cols-1 scrollbar-hide max-ml:grid-cols-2 max-lg:grid-cols-3 lg:grid-cols-4 mb-[72px] gap-4 ${poppins.className}`}

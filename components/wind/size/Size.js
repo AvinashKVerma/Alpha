@@ -83,7 +83,6 @@ export default function Size() {
     }, 500);
   };
 
-  console.log(cartItem);
   return (
     <div className="flex max-md:w-full mb-[100px] gap-5">
       <div className="ml:w-4/5 max-ml:w-full flex max-md:flex-col  gap-4">
